@@ -4,6 +4,234 @@ the easiest way you can add a template for your project
 you can customize the template as you wish
 here we start by
 
+## Project Structure
+
+### Features Structure
+
+Each feature follows Clean Architecture pattern:
+
+```
+features/
+├── {{feature_name}}/
+│   ├── data/
+│   │   ├── data_source/
+│   │   │   ├── local/
+│   │   │   │   └── local_data_source.dart
+│   │   │   └── remote/
+│   │   │       └── remote_data_source.dart
+│   │   ├── models/
+│   │   │   ├── request/
+│   │   │   │   └── {{feature_name}}_request.dart
+│   │   │   └── response/
+│   │   │       └── {{feature_name}}_model.dart
+│   │   └── repository/
+│   │       ├── {{feature_name}}_repository_impl.dart
+│   │       ├── {{feature_name}}_repository.dart
+│   │       └── endpoints.dart
+│   ├── di/
+│   │   └── {{feature_name}}_di.dart
+│   ├── logic/
+│   │   ├── {{feature_name}}_cubit.dart
+│   │   └── {{feature_name}}_states.dart
+│   ├── presentation/
+│   │   ├── components/
+│   │   │   └── {{feature_name}}_components.dart
+│   │   ├── views/
+│   │   │   └── {{feature_name}}_view.dart
+│   │   └── widgets/
+│   │       ├── {{feature_name}}_widgets.dart
+│   │       └── widgets.dart
+│   └── router/
+│       ├── {{feature_name}}_names.dart
+│       └── {{feature_name}}_router.dart
+```
+
+### Feature Components Description
+
+#### 📊 **data/**
+
+- `data_source/` - Data sources (local & remote)
+- `models/` - Data models (request & response)
+- `repository/` - Repository implementation
+
+#### 🔗 **di/**
+
+- `{{feature_name}}_di.dart` - Dependency injection setup
+
+#### 🧠 **logic/**
+
+- `{{feature_name}}_cubit.dart` - Business logic (Cubit)
+- `{{feature_name}}_states.dart` - State classes
+
+#### 🎨 **presentation/**
+
+- `components/` - UI components
+- `views/` - Screen views
+- `widgets/` - Reusable widgets
+
+#### 🧭 **router/**
+
+- `{{feature_name}}_names.dart` - Route names
+- `{{feature_name}}_router.dart` - Route configuration
+
+### Core Structure
+
+The core folder contains shared utilities and configurations:
+
+```
+core/
+├── app_strings/
+│   ├── app_strings.dart
+│   └── locale_keys.dart
+├── cache/
+│   ├── cache_helper.dart
+│   ├── hive_service.dart
+│   ├── init_hive.dart
+│   └── secure_storage.dart
+├── config/
+│   ├── config.dart
+│   └── key.dart
+├── error/
+│   ├── error_handler.dart
+│   ├── exceptions.dart
+│   ├── failures.dart
+│   └── result_extensions.dart
+├── extensions/
+│   ├── all_extensions.dart
+│   ├── context_extensions.dart
+│   ├── date_time_extensions.dart
+│   ├── double_extensions.dart
+│   ├── int_extensions.dart
+│   ├── string_extensions.dart
+│   ├── text_style_extensions.dart
+│   └── widget_extensions.dart
+├── general/
+│   ├── general_cubit.dart
+│   ├── general_state.dart
+│   └── my_bloc_observer.dart
+├── localization/
+│   └── localization_helper.dart
+├── locator/
+│   ├── locator_setup.dart
+│   └── service_locator.dart
+├── network/
+│   ├── api_consumer.dart
+│   ├── dio_consumer.dart
+│   ├── interceptors/
+│   │   ├── auth_interceptor.dart
+│   │   └── retry_interceptor.dart
+│   ├── network_config.dart
+│   └── retry_interceptor.dart
+├── Router/
+│   ├── app_router.dart
+│   └── router_names.dart
+├── services/
+│   ├── alerts.dart
+│   └── media/
+│       ├── alert_of_media.dart
+│       ├── item_of_contact.dart
+│       └── media_service.dart
+├── theme/
+│   ├── app_colors.dart
+│   ├── app_typography.dart
+│   └── theme_manager.dart
+└── utils/
+    ├── app_assets.dart
+    ├── extentions.dart
+    ├── firebase_message.dart
+    ├── general_constants.dart
+    ├── index.dart
+    ├── regx.dart
+    ├── utils.dart
+    └── validations.dart
+```
+
+### Core Components Description
+
+#### 📱 **app_strings/**
+
+- `app_strings.dart` - Static strings for the app
+- `locale_keys.dart` - Generated localization keys
+
+#### 💾 **cache/**
+
+- `cache_helper.dart` - Cache management utilities
+- `hive_service.dart` - Hive database service
+- `init_hive.dart` - Hive initialization
+- `secure_storage.dart` - Secure storage for sensitive data
+
+#### ⚙️ **config/**
+
+- `config.dart` - App configuration settings
+- `key.dart` - API keys and secrets
+
+#### ❌ **error/**
+
+- `error_handler.dart` - Global error handling
+- `exceptions.dart` - Custom exceptions
+- `failures.dart` - Failure classes
+- `result_extensions.dart` - Result extensions
+
+#### 🔧 **extensions/**
+
+- `all_extensions.dart` - All extensions export
+- `context_extensions.dart` - BuildContext extensions
+- `date_time_extensions.dart` - DateTime utilities
+- `double_extensions.dart` - Double utilities
+- `int_extensions.dart` - Integer utilities
+- `string_extensions.dart` - String utilities
+- `text_style_extensions.dart` - TextStyle utilities
+- `widget_extensions.dart` - Widget utilities
+
+#### 🌐 **general/**
+
+- `general_cubit.dart` - Global state management
+- `general_state.dart` - Global states
+- `my_bloc_observer.dart` - Bloc observer
+
+#### 🌍 **localization/**
+
+- `localization_helper.dart` - Localization utilities
+
+#### 🔗 **locator/**
+
+- `locator_setup.dart` - Dependency injection setup
+- `service_locator.dart` - Service locator
+
+#### 🌐 **network/**
+
+- `api_consumer.dart` - API consumer interface
+- `dio_consumer.dart` - Dio implementation
+- `interceptors/` - Network interceptors
+- `network_config.dart` - Network configuration
+
+#### 🧭 **Router/**
+
+- `app_router.dart` - Main app router
+- `router_names.dart` - Route names
+
+#### 🛠️ **services/**
+
+- `alerts.dart` - Alert dialogs
+- `media/` - Media handling services
+
+#### 🎨 **theme/**
+
+- `app_colors.dart` - App color scheme
+- `app_typography.dart` - Typography settings
+- `theme_manager.dart` - Theme management
+
+#### 🔧 **utils/**
+
+- `app_assets.dart` - Asset paths
+- `extentions.dart` - General extensions
+- `firebase_message.dart` - Firebase messaging
+- `general_constants.dart` - App constants
+- `index.dart` - Exports
+- `regx.dart` - Regular expressions
+- `utils.dart` - General utilities
+- `validations.dart` - Input validations
+
 ## Getting Started
 
 1. Install Mason
