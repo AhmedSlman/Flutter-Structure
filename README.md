@@ -77,157 +77,155 @@ mason get
 Below is a list of default dependencies used in this project:
 
 ```yaml
-flutter_localizations:
-  sdk: flutter
-intl: ^0.20.0
-
-dio: ^5.8.0+1
-cached_network_image: ^3.2.3
-shimmer: ^3.0.0
-flutter_svg: ^2.0.7
-smooth_page_indicator: ^1.1.0
-bloc: ^8.1.2
+# State Management
 flutter_bloc: ^8.1.3
-carousel_slider: ^4.2.1
-animated_widgets_flutter: ^1.1.1+2
-get_it: ^7.6.0
-lottie: ^2.0.1
-responsive_framework: ^1.5.1
-fluttertoast: ^8.1.2
+bloc: ^8.1.2
+
+# Localization
+easy_localization: ^3.0.4
+
+# Navigation
+go_router: ^12.1.3
+
+# Network
+dio: ^5.4.0
+connectivity_plus: ^5.0.2
+
+# Storage
+shared_preferences: ^2.2.2
 hive: ^2.2.3
 hive_flutter: ^1.1.0
-flutter_smart_dialog: ^4.9.8+9
-bot_toast: ^4.1.3
-pretty_dio_logger: ^1.4.0
-permission_handler: ^12.0.1
-image_picker: ^1.1.2
-device_info_plus: ^11.5.0
-dotted_border: ^3.1.0
-pinput: ^5.0.1
-animate_do: ^3.3.2
-chewie: ^1.12.1
-flutter_secure_storage: ^9.2.4
-video_player: ^2.10.0
-file_picker: ^10.2.0
+flutter_secure_storage: ^9.0.0
 
-geolocator: ^14.0.2
-geocoding: ^4.0.0
-google_maps_flutter: ^2.12.3
-infinite_scroll_pagination:
-  ^4.1.0
-  # url_launcher: ^6.2.4
-# whatsapp: ^2.0.0
+# UI
+flutter_screenutil: ^5.9.0
+responsive_framework: ^1.1.1
+flutter_smart_dialog: ^3.3.0
+bot_toast: ^4.0.1
+flutter_svg: ^2.0.9
 
-# Use this line for build with obfuscate app
+# Utils
+get_it: ^7.6.4
+equatable: ^2.0.5
+json_annotation: ^4.8.1
+intl: ^0.19.0
 
-# flutter clean && flutter pub get && flutter build ipa --dart-define-from-file=env.json --obfuscate --split-debug-info=build/app/outputs/symbols
+# Media
+image_picker: ^1.0.4
+permission_handler: ^11.1.0
+
+# Maps & Location
+google_maps_flutter: ^2.5.3
+geolocator: ^10.1.0
+geocoding: ^2.1.1
+
+# Firebase
+firebase_core: ^2.24.2
+firebase_messaging: ^14.7.10
+
+# Video & Audio
+agora_rtc_engine: ^6.3.0
+pusher_channels_flutter: ^2.2.1
 ```
 
-### generate assets folder:
+## Dev Dependencies
+
+```yaml
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+  # Code Generation
+  build_runner: ^2.4.7
+  json_serializable: ^6.7.1
+  hive_generator: ^2.0.1
+```
+
+## Generate Project Components
+
+### Generate Assets Folder
 
 ```shell
 mason make assets -o ../
 ```
 
-## generate project template:
+### Generate Project Template
 
 ```shell
 mason make project_template -o .././lib
 ```
 
-## add new feature with the name you give:
+### Add New Feature
 
 ```shell
 mason make feature -o .././lib/features
 ```
 
-## add the default authentications and splash:
+### Add Authentication & Splash
 
 ```shell
 mason make auth -o .././lib/features
 ```
 
-## add the default static pages:
+### Add Static Pages
 
 ```shell
 mason make static_pages -o .././lib/features
 ```
 
-## add the webview_payment:
+### Add WebView Payment
 
 ```shell
 mason make webview_payment -o .././lib/shared/widgets
 ```
 
-## Add assets paths in pubspec.yaml file
+## Add Assets Paths in pubspec.yaml
 
-```
+```yaml
+flutter:
   assets:
-    - assets/images/
-    - assets/json/
-    - assets/fonts/
-    - assets/icons/
     - assets/translations/
-
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
 ```
 
-## generate file that contains assets variables and fonts and json:
+## Setup Localization
 
-1. generate app assets add to yaml
+### 1. Configure Easy Localization
+
+Add easy_localization configuration to your `main.dart`:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('en'),
+      child: MyApp(),
+    ),
+  );
+}
+```
+
+### 2. Generate Translation Keys
 
 ```shell
-flutter_assets:
-  assets_path: assets/
-  output_path: lib/core/constants/
-  filename: app_assets.dart
-  field_prefix:
-  classname: AppAssets
-  assets_path:
-    - assets/images/
-    - assets/icons/
-
-```
-
-1. generate app localization
-
-````shell
-flutter gen-l10n```
-
-
-2. add these dependencies to dev_dependencies
-
-```yaml
-dev_dependencies:
-  build_runner:
-  flutter_gen_runner:
-  injectable_generator:
-````
-
-3. add flutter gen configs to pubspec.yaml
-
-```yaml
-flutter_gen:
-  output: lib/core/resources/gen/
-  line_length: 80
-
-  # Optional
-  integrations:
-    flutter_svg: true
-    flare_flutter: true
-    rive: true
-    lottie: true
-```
-
-generate assets folder:
-
-dart run build_runner build
-
-mason make assets -o ../
-
-mason make project_template -o .././lib
-
 dart pub run easy_localization:generate -S "assets/translations" -O "lib/core/app_strings" -o "locale_keys.dart" -f keys
+```
 
+### 3. Complete Setup
+
+```shell
+# Get dependencies
+mason get
+
+# Generate all components
+mason make assets -o ../
+mason make project_template -o .././lib
 mason make auth -o .././lib/features
-
-mason make feature -o .././lib/features
+```
