@@ -1,0 +1,7 @@
+name: feature_hooks
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  mason: ">=0.1.0"

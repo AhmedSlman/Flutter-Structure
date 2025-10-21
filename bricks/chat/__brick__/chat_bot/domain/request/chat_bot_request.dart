@@ -1,0 +1,1 @@
+class chat_botRequest {}

@@ -1,0 +1,50 @@
+name: chat
+description: Complete standalone chat module with real-time messaging, voice, video calls, and location sharing.
+
+version: 1.0.0+1
+
+environment:
+  mason: ">=0.1.1"
+
+vars:
+  baseUrl:
+    type: string
+    description: Base URL for API
+    default: https://your-api.com/api/
+    prompt: What is your API base URL?
+
+  pusherKey:
+    type: string
+    description: Pusher API Key
+    default: YOUR_PUSHER_KEY
+    prompt: What is your Pusher API Key?
+
+  pusherCluster:
+    type: string
+    description: Pusher Cluster
+    default: eu
+    prompt: What is your Pusher Cluster?
+
+  pusherAuthUrl:
+    type: string
+    description: Pusher Auth URL
+    default: https://your-api.com/api/broadcasting/auth
+    prompt: What is your Pusher broadcasting auth URL?
+
+  googleMapsKey:
+    type: string
+    description: Google Maps API Key
+    default: YOUR_GOOGLE_MAPS_KEY
+    prompt: What is your Google Maps API Key?
+
+  addToRouter:
+    type: boolean
+    description: Automatically add routes to Router.dart
+    default: true
+    prompt: Do you want to automatically add chat routes to Router.dart?
+
+  registerRepositories:
+    type: boolean
+    description: Automatically register repositories in Locator.dart
+    default: true
+    prompt: Do you want to automatically register chat repositories in Locator.dart?
