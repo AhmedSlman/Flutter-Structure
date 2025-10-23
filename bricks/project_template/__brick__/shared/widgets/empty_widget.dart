@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../core/utils/extentions.dart';
 
 import '../../core/theme/light_theme.dart';
+import '../../core/theme/app_colors.dart';
 import 'customtext.dart';
 
 class EmptyWidget extends StatelessWidget {
@@ -34,7 +35,7 @@ class EmptyWidget extends StatelessWidget {
           CustomText(
             title,
             weight: FontWeight.w800,
-            color: LightThemeColors.textPrimary,
+            color: AppColors.textPrimary,
           ),
           12.ph,
           if (subtitle.isNotEmpty)

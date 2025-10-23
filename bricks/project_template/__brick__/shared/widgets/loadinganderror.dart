@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/utils/extentions.dart';
+import '../../core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'button_widget.dart';
 import 'customtext.dart';
 
@@ -22,9 +24,9 @@ class LoadingAndError extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomText(
-                'يوجد مشكله فى البيانات',
+                'data_error'.tr(),
                 fontSize: 18,
-                color: context.colorScheme.primary,
+                color: context.primaryColor,
               ),
               24.ph,
               if (Navigator.canPop(context) || function != null)
@@ -44,8 +46,8 @@ class LoadingAndError extends StatelessWidget {
                       // Navigator.pop(context);
                     },
                     child: CustomText(
-                      function != null ? "Retry" : "Go back",
-                      color: Colors.white,
+                      function != null ? "retry".tr() : "go_back".tr(),
+                      color: AppColors.onPrimary,
                       fontSize: 18,
                       weight: FontWeight.w500,
                     ))
@@ -54,7 +56,7 @@ class LoadingAndError extends StatelessWidget {
         );
       } else if (isLoading) {
         return Material(
-          color: context.colorScheme.background,
+          color: context.backgroundColor,
           child: const Center(
             child: CircularProgressIndicator(),
           ),

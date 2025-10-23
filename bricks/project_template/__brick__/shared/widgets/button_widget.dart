@@ -47,14 +47,14 @@ class ButtonWidget extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
-              buttonColor ?? context.secondaryColor),
+              buttonColor ?? context.primaryColor),
           overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
           shadowColor: MaterialStateProperty.all<Color>(Colors.white),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius),
               side: withBorder
-                  ? BorderSide(color: borderColor ?? context.secondaryColor)
+                  ? BorderSide(color: borderColor ?? context.primaryColor)
                   : const BorderSide(color: Colors.transparent),
             ),
           ),
@@ -100,7 +100,7 @@ class TextButtonWidget extends StatelessWidget {
         fontWeight: fontweight ?? FontWeight.w500,
         fontFamily: fontFamily ?? "Almarai",
         fontSize: size ?? 16,
-        color: color ?? context.secondaryColor,
+        color: color ?? context.primaryColor,
         //  style: TextStyle(color: AppColors.secondary),
       ),
       // style: TextButton.styleFrom(

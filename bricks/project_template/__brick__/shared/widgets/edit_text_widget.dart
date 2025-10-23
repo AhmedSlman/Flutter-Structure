@@ -9,6 +9,8 @@ import '../../core/services/media/alert_of_media.dart';
 import '../../core/utils/utils.dart';
 import '../../core/services/alerts.dart';
 import '../../core/theme/light_theme.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../core/extensions/all_extensions.dart';
 import 'location_picker_screen.dart';
 
@@ -77,11 +79,11 @@ class TextFormFieldWidget extends StatefulWidget {
     this.maxLengh,
     this.errorText,
     this.controller,
-    this.activeBorderColor = LightThemeColors.primary,
+    this.activeBorderColor = AppColors.primary,
     this.borderRadius = 30.0,
     this.borderColor = Colors.black,
     this.backgroundColor,
-    this.hintColor = LightThemeColors.textHint,
+    this.hintColor = AppColors.textHint,
     this.maxLines,
     this.minLines = 1,
     this.prefixIcon,
@@ -120,7 +122,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
-    this.hintColor = LightThemeColors.textHint,
+    this.hintColor = AppColors.textHint,
     this.inputDecoration,
     this.contentPadding,
     this.textdirection,
@@ -167,7 +169,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
-    this.hintColor = LightThemeColors.textHint,
+    this.hintColor = AppColors.textHint,
     this.inputDecoration,
     this.contentPadding,
     this.textdirection,
@@ -211,7 +213,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
-    this.hintColor = LightThemeColors.textHint,
+    this.hintColor = AppColors.textHint,
     this.inputDecoration,
     this.contentPadding,
     this.textdirection,
@@ -257,7 +259,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
-    this.hintColor = LightThemeColors.textHint,
+    this.hintColor = AppColors.textHint,
     this.inputDecoration,
     this.contentPadding,
     this.textdirection,
@@ -367,7 +369,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: TextStyles.font16BlackSemiBold.copyWith(
+            style: AppStyles.labelStyle.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 12,
             ),

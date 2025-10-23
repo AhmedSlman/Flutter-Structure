@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/widgets/customtext.dart';
 import '../../extensions/context_extensions.dart';
+import '../../localization/localization_helper.dart';
 
 class ItemOfContact extends StatelessWidget {
   final void Function()? onTap;
@@ -33,7 +34,12 @@ class ItemOfContact extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CustomText(title ?? '', fontSize: 17, weight: FontWeight.w400),
+                CustomText(
+                  title ?? '', 
+                  fontSize: 17, 
+                  weight: FontWeight.w400,
+                  color: LocalizationHelper.isArabic ? Colors.white : Colors.black,
+                ),
                 const Spacer(),
                 choose
                     ? Icon(
@@ -60,7 +66,11 @@ class ItemOfContact extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CustomText(title ?? '', fontSize: 17),
+                CustomText(
+                  title ?? '', 
+                  fontSize: 17,
+                  color: LocalizationHelper.isArabic ? Colors.white : Colors.black,
+                ),
                 const Spacer(),
                 choose
                     ? Image.asset(

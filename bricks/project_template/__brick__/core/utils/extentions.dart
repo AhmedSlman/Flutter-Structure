@@ -183,7 +183,7 @@ extension StringCasingExtension on String {
   // ==================== CONVERSION EXTENSIONS ====================
 
   /// تحويل إلى رقم عشري
-  double toDouble() => double.tryParse(this) ?? "0") ?? 0;
+  double toDouble() => double.tryParse(this) ?? 0;
 
   /// تحويل إلى لون من hex
   Color? toColor() {

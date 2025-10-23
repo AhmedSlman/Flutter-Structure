@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../core/extensions/all_extensions.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 
 enum TextStyleEnum {
   normal,
@@ -17,33 +20,33 @@ class CustomText extends StatelessWidget {
       FontWeight? weight}) {
     switch (textStyleEnum) {
       case TextStyleEnum.title:
-        return const TextStyle(fontSize: 25, fontFamily: "Roboto", fontWeight: FontWeight.w500).copyWith(
+        return AppStyles.headerStyle.copyWith(
             decoration: decoration,
-            color: color ?? Colors.black,
+            color: color ?? AppColors.textPrimary,
             height: height,
             fontWeight: weight,
             fontSize: fontSize,
             overflow: overflow ?? TextOverflow.visible,
-            fontFamily: fontFamily ?? "Roboto");
+            fontFamily: fontFamily);
       case TextStyleEnum.caption:
-        return const TextStyle(fontSize: 14, fontFamily: "Roboto", fontWeight: FontWeight.w300).copyWith(
+        return AppStyles.captionStyle.copyWith(
             decoration: decoration,
-            color: color ?? Colors.black,
+            color: color ?? AppColors.textSecondary,
             fontWeight: weight,
             height: height,
             fontSize: fontSize,
             overflow: overflow ?? TextOverflow.visible,
-            fontFamily: fontFamily ?? "Roboto");
+            fontFamily: fontFamily);
 
       default:
-        return const TextStyle(fontSize: 14, fontFamily: "Roboto", fontWeight: FontWeight.w400).copyWith(
+        return AppStyles.bodyStyle.copyWith(
             decoration: decoration,
-            color: color ?? Colors.black,
+            color: color ?? AppColors.textPrimary,
             height: height,
             fontWeight: weight,
             fontSize: fontSize,
             overflow: overflow ?? TextOverflow.visible,
-            fontFamily: fontFamily ?? "Roboto");
+            fontFamily: fontFamily);
     }
   }
 

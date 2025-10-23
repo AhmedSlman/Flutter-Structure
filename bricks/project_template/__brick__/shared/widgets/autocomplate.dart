@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import '../../core/extensions/all_extensions.dart';
 
 import '../../core/theme/light_theme.dart';
+import '../../core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'customtext.dart';
 import 'edit_text_widget.dart';
 
@@ -139,7 +141,7 @@ class _CutomAutoCompleteTextFeildState<T>
                   if (widget.showRequiredStar)
                     CustomText(
                       "*",
-                      color: LightThemeColors.error,
+                      color: AppColors.error,
                     )
                 ],
               ),
@@ -330,7 +332,7 @@ class _CutomAutoCompleteTextFeildState<T>
                         ? widget.emptyWidget ??
                             Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: CustomText("no_items"),
+                              child: CustomText("no_items".tr()),
                             )
                         : Scrollbar(
                             child: ListView.separated(

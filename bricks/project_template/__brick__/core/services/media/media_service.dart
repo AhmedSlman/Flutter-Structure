@@ -7,8 +7,8 @@ import 'package:file_picker/file_picker.dart';
 
 import '../../../shared/widgets/customtext.dart';
 import '../../../shared/widgets/button_widget.dart';
-import '../navigation_service.dart';
-import '../../localization/localization_helper.dart';
+import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/utils.dart';
 
 class MediaService {
@@ -110,20 +110,20 @@ class MediaService {
   /// Open dialog to guide the user to app settings
   Future<void> _openSettingsPermissionDialog() {
     return showDialog(
-      context: NavigationService.context,
+      context: EasyLocalization.navigatorKey.currentContext!,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: CustomText(LocalizationHelper.tr.permissionRequired),
-          content: CustomText(LocalizationHelper.tr.enablePermissions),
+          title: CustomText('permission_required'.tr()),
+          content: CustomText('enable_permissions_message'.tr()),
           actions: [
             TextButtonWidget(
-              function: () => NavigationService.pop(),
-              text: LocalizationHelper.tr.cancel,
+              function: () => context.pop(),
+              text: 'cancel'.tr(),
             ),
             TextButtonWidget(
               function: () =>
-                  openAppSettings().then((_) => NavigationService.pop()),
-              text: LocalizationHelper.tr.settings,
+                  openAppSettings().then((_) => context.pop()),
+              text: 'settings'.tr(),
             ),
           ],
         );

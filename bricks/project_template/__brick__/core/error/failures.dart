@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../localization/localization_helper.dart';
 
 /// Base failure class for all application failures
 /// Inspired by Clean Architecture principles
@@ -39,7 +40,7 @@ class ServerFailure extends Failure {
     this.statusCode,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً' : 'Server error occurred, please try again later'));
 }
 
 /// Network-related failures (connection issues)
@@ -49,7 +50,7 @@ class NetworkFailure extends Failure {
     super.code = 'NETWORK_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'حدث خطأ في الاتصال بالإنترنت');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في الاتصال بالإنترنت' : 'Network connection error'));
 }
 
 /// No internet connection failure
@@ -59,7 +60,7 @@ class NoInternetFailure extends Failure {
     super.code = 'NO_INTERNET',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'لا يوجد اتصال بالإنترنت');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'لا يوجد اتصال بالإنترنت' : 'No internet connection'));
 }
 
 /// Timeout failures
@@ -69,7 +70,7 @@ class TimeoutFailure extends Failure {
     super.code = 'TIMEOUT',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى' : 'Connection timeout, please try again'));
 }
 
 /// Cache-related failures
@@ -79,7 +80,7 @@ class CacheFailure extends Failure {
     super.code = 'CACHE_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'حدث خطأ في التخزين المؤقت');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في التخزين المؤقت' : 'Cache error occurred'));
 }
 
 /// Authentication failures (401)
@@ -90,7 +91,7 @@ class AuthFailure extends Failure {
     super.originalError,
     super.stackTrace,
   }) : super(
-         message: message ?? 'فشلت عملية المصادقة، يرجى تسجيل الدخول مرة أخرى',
+         message: message ?? (LocalizationHelper.isArabic ? 'فشلت عملية المصادقة، يرجى تسجيل الدخول مرة أخرى' : 'Authentication failed, please login again'),
        );
 }
 
@@ -101,7 +102,7 @@ class PermissionFailure extends Failure {
     super.code = 'PERMISSION_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'ليس لديك صلاحية للوصول إلى هذا المورد');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'ليس لديك صلاحية للوصول إلى هذا المورد' : 'You do not have permission to access this resource'));
 }
 
 /// Not found failures (404)
@@ -111,7 +112,7 @@ class NotFoundFailure extends Failure {
     super.code = 'NOT_FOUND',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'المورد المطلوب غير موجود');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'المورد المطلوب غير موجود' : 'The requested resource was not found'));
 }
 
 /// Validation failures (422)
@@ -124,7 +125,7 @@ class ValidationFailure extends Failure {
     this.errors,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'البيانات المدخلة غير صحيحة');
+  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'البيانات المدخلة غير صحيحة' : 'Invalid input data'));
 }
 
 /// Bad request failures (400)

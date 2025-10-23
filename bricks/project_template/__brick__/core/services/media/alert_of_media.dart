@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../../../shared/widgets/item_of_contact.dart';
-import '../../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/utils.dart';
 import '../alerts.dart';
-import '../navigation_service.dart';
+import 'package:go_router/go_router.dart';
 
 class AlertOfMedia extends StatelessWidget {
   const AlertOfMedia({
@@ -25,20 +25,20 @@ class AlertOfMedia extends StatelessWidget {
   ) async {
     try {
       final File? selectedMedia = await pickMedia();
-      NavigationService.pop(); // Close the dialog
+      context.pop(); // Close the dialog
       if (selectedMedia != null) {
         onMediaSelected?.call(selectedMedia);
       } else {
         Alerts.snack(
           state: SnackState.failed,
-          text: LocalizationHelper.tr.noImageSelected,
+          text: 'no_image_selected'.tr(),
         );
       }
     } catch (e) {
-      NavigationService.pop();
+      context.pop();
       Alerts.snack(
         state: SnackState.failed,
-        text: LocalizationHelper.tr.mediaPickError,
+        text: 'error_picking_media'.tr(),
       );
     }
   }
@@ -57,7 +57,7 @@ class AlertOfMedia extends StatelessWidget {
               onCameraSelected,
             ),
             child: ItemOfContact(
-              title: LocalizationHelper.tr.camera,
+              title: 'camera'.tr(),
               choose: true,
               isImage: true,
             ),
@@ -70,7 +70,7 @@ class AlertOfMedia extends StatelessWidget {
               onGallerySelected,
             ),
             child: ItemOfContact(
-              title: LocalizationHelper.tr.gallery,
+              title: 'gallery'.tr(),
               choose: false,
               isImage: true,
             ),

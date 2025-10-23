@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../core/extensions/all_extensions.dart';
-
+import '../../core/theme/app_colors.dart';
 import '../../core/services/alerts.dart';
 
 class SnackDesgin extends StatelessWidget {
@@ -45,8 +45,8 @@ class SnackDesgin extends StatelessWidget {
         ],
       ).setContainerToView(
         color: state == SnackState.success
-            ? context.colorScheme.primary
-            : context.colorScheme.error,
+            ? context.primaryColor
+            : context.errorColor,
         margin: 20,
         radius: 8,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

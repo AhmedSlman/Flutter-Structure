@@ -4,6 +4,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../../shared/widgets/alert_dialog.dart';
 import '../../shared/widgets/snackbar.dart';
+import '../localization/localization_helper.dart';
 
 enum SnackState { success, failed }
 
@@ -119,12 +120,12 @@ class Alerts {
                     onPressed: () {
                       Navigator.pop(context, false);
                     },
-                    child: const Text("لا")),
+                    child: Text(LocalizationHelper.isArabic ? "لا" : "No")),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context, true);
                     },
-                    child: const Text("نعم"))
+                    child: Text(LocalizationHelper.isArabic ? "نعم" : "Yes"))
               ],
             )));
   }
@@ -137,9 +138,9 @@ class Alerts {
         child: Dialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            child: const SnackDesgin(
+            child: SnackDesgin(
               state: SnackState.failed,
-              text: "حدث خطأ ما",
+              text: LocalizationHelper.isArabic ? "حدث خطأ ما" : "An error occurred",
             )),
       ),
     );

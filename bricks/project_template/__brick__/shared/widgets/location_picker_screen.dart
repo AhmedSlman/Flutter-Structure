@@ -3,8 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../core/Router/navigation_helper.dart';
-import '../../core/localization/generated/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../core/utils/extentions.dart';
 
 import '../../../../shared/widgets/customtext.dart';
@@ -67,7 +66,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context).pickLocation)),
+      appBar: AppBar(title: Text('pick_location'.tr())),
       body: GoogleMap(
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(target: _center, zoom: 13.0),
@@ -125,7 +124,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                   _lastMapPosition!.latitude,
                   _lastMapPosition!.longitude,
                 );
-                NavigationService.pop(result: [_lastMapPosition, placemarks]);
+                Navigator.pop(context, [_lastMapPosition, placemarks]);
               }
             },
             tooltip: 'Pick Location',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/extensions/all_extensions.dart';
-
+import '../../core/theme/app_colors.dart';
 import 'customtext.dart';
 
 class ItemOfContact extends StatelessWidget {
@@ -24,7 +24,7 @@ class ItemOfContact extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 21),
             // height: 60.h,
             decoration: BoxDecoration(
-              color: choose ? context.colorScheme.secondary : Colors.white,
+              color: choose ? context.secondaryColor : context.backgroundColor,
               borderRadius: BorderRadius.circular(10),
               /*   border: Border.all(
                     color: choose
@@ -40,8 +40,8 @@ class ItemOfContact extends StatelessWidget {
                 ),
                 const Spacer(),
                 choose
-                    ? Icon(Icons.camera_alt_outlined, color: context.colorScheme.primary)
-                    : Icon(Icons.image_outlined, color: context.colorScheme.primary)
+                    ? Icon(Icons.camera_alt_outlined, color: context.primaryColor)
+                    : Icon(Icons.image_outlined, color: context.primaryColor)
               ],
             ),
           )
@@ -71,7 +71,7 @@ class ItemOfContact extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: context.colorScheme.primary),
+                      border: Border.all(color: context.primaryColor),
                       shape: BoxShape.circle),
                   child: choose
                       ? Container(
@@ -79,7 +79,7 @@ class ItemOfContact extends StatelessWidget {
                           width: 20,
                           decoration: BoxDecoration(
                               color: context.colorScheme.primary,
-                              border: Border.all(color: context.colorScheme.primary),
+                              border: Border.all(color: context.primaryColor),
                               shape: BoxShape.circle),
                         )
                       : null,

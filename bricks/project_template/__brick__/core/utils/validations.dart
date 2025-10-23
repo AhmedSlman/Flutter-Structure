@@ -1,4 +1,4 @@
-import '../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'regx.dart';
 
 /// نظام التحقق من صحة البيانات
@@ -11,7 +11,7 @@ class Validation {
   /// التحقق من الحقل المطلوب
   static String? requiredField(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return LocalizationHelper.tr('requiredField');
+      return 'requiredField'.tr();
     }
     return null;
   }
@@ -29,11 +29,11 @@ class Validation {
   /// التحقق من رقم الهاتف السعودي
   static String? phoneValidation(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return LocalizationHelper.tr('requiredPhone');
+      return 'requiredPhone'.tr();
     }
 
     if (!AppRegx.isValidSaudiPhone(value.trim())) {
-      return LocalizationHelper.tr('phoneDoseNotMatch');
+      return 'phoneDoseNotMatch'.tr();
     }
 
     return null;
@@ -49,11 +49,11 @@ class Validation {
   /// التحقق من البريد الإلكتروني
   static String? emailValidation(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return LocalizationHelper.tr('requiredEmail');
+      return 'requiredEmail'.tr();
     }
 
     if (!AppRegx.isValidEmail(value.trim())) {
-      return LocalizationHelper.tr('wrongEmailValidation');
+      return 'wrongEmailValidation'.tr();
     }
 
     return null;
@@ -64,11 +64,11 @@ class Validation {
   /// التحقق من كلمة المرور
   static String? passwordValidation(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return LocalizationHelper.tr('requiredPassword');
+      return 'requiredPassword'.tr();
     }
 
     if (value.trim().length < 8) {
-      return LocalizationHelper.tr('smallPassword');
+      return 'smallPassword'.tr();
     }
 
     return null;
@@ -77,11 +77,11 @@ class Validation {
   /// التحقق من تأكيد كلمة المرور
   static String? confirmPasswordValidation(String? value, String password) {
     if (value == null || value.isEmpty) {
-      return LocalizationHelper.tr('confirmPassword');
+      return 'confirmPassword'.tr();
     }
 
     if (password != value) {
-      return LocalizationHelper.tr('passwordNotMatch');
+      return 'passwordNotMatch'.tr();
     }
 
     return null;
@@ -92,7 +92,7 @@ class Validation {
   /// التحقق من الحد الأدنى للطول
   static String? minLengthValidation(String? value, int minLength) {
     if (value == null || value.trim().isEmpty) {
-      return LocalizationHelper.tr('requiredField');
+      return 'requiredField'.tr();
     }
 
     if (value.trim().length < minLength) {

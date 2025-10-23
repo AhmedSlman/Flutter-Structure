@@ -7,7 +7,6 @@ import '../cache/init_hive.dart';
 
 // Import feature DI setups
 import '../../features/auth/di/auth_di.dart';
-import '../../features/home/di/home_di.dart';
 
 /// Global service locator instance
 final GetIt sl = GetIt.instance;
@@ -35,7 +34,6 @@ class ServiceLocator {
 
     // Register feature services
     AuthDI.setup();
-    HomeDI.setup();
 
     // Add more features here as needed
   }

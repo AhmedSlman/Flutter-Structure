@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../../core/extensions/all_extensions.dart';
+import '../../core/theme/app_colors.dart';
 import 'customtext.dart';
 
 AlertDialog alertDialog(
@@ -24,7 +25,7 @@ AlertDialog alertDialog(
     content: CustomText(
       title,
       fontSize: 18,
-      color: Colors.black,
+      color: AppColors.textPrimary,
       align: TextAlign.center,
     ),
     actions: [
@@ -33,7 +34,7 @@ AlertDialog alertDialog(
           elevation: 0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: BorderSide(color: Colors.purple, width: 1)),
+              side: BorderSide(color: AppColors.primary, width: 1)),
           child: InkWell(
             onTap: () => action1.call(),
             child: Padding(
@@ -41,17 +42,17 @@ AlertDialog alertDialog(
               child: CustomText(
                 action1title,
                 textStyleEnum: TextStyleEnum.normal,
-                color: Colors.purple,
+                color: AppColors.primary,
               ),
             ),
           )),
       Card(
           clipBehavior: Clip.hardEdge,
           elevation: 0,
-          color:Colors.purple,
+          color: AppColors.primary,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: BorderSide(color: Colors.purple, width: 1)),
+              side: BorderSide(color: AppColors.primary, width: 1)),
           child: InkWell(
             onTap: () {
               action2.call();
@@ -61,7 +62,7 @@ AlertDialog alertDialog(
               child: CustomText(
                 action2title,
                 textStyleEnum: TextStyleEnum.normal,
-                color: Colors.white,
+                color: AppColors.onPrimary,
               ),
             ),
           ))

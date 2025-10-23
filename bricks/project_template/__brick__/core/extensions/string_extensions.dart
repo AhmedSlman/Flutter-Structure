@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
+import '../localization/localization_helper.dart';
 import 'all_extensions.dart';
 
 bool hasMatch(String? s, String p) {
@@ -115,6 +116,74 @@ extension StringExtension on String? {
     } catch (e) {
       return defaultValue;
     }
+  }
+
+  // ==================== LOCALIZATION EXTENSIONS ====================
+
+  /// الحصول على النص المترجم
+  String tr({List<String>? args, Map<String, String>? namedArgs}) {
+    return LocalizationHelper.tr(this ?? '', args: args, namedArgs: namedArgs);
+  }
+
+  /// إنشاء Text widget مع الترجمة والألوان الحالية
+  Widget text({
+    double fontSize = 14,
+    FontWeight? fontWeight = FontWeight.w400,
+    Color? color,
+    TextAlign textAlign = TextAlign.center,
+    int? maxLines,
+    TextDecoration textDecoration = TextDecoration.none,
+    double height = 1.2,
+    double titlePadding = 0,
+    TextStyle? textStyle,
+  }) {
+    return Text(
+      tr(),
+      maxLines: maxLines,
+      overflow: maxLines == null ? null : TextOverflow.ellipsis,
+      style: textStyle ??
+          AppStyles.custom(
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+            height: height,
+            decoration: textDecoration,
+          ),
+      textAlign: textAlign,
+    ).paddingHorizontal(titlePadding);
+  }
+
+  /// إنشاء Text widget مع الترجمة والستايلز المحددة
+  Widget textWithStyle({
+    TextStyle? style,
+    TextAlign textAlign = TextAlign.center,
+    int? maxLines,
+    double titlePadding = 0,
+  }) {
+    return Text(
+      tr(),
+      maxLines: maxLines,
+      overflow: maxLines == null ? null : TextOverflow.ellipsis,
+      style: style ?? AppStyles.body,
+      textAlign: textAlign,
+    ).paddingHorizontal(titlePadding);
+  }
+
+  /// إنشاء Text widget مع الترجمة والألوان الديناميكية
+  Widget textWithContext(
+    BuildContext context, {
+    TextStyle? style,
+    TextAlign textAlign = TextAlign.center,
+    int? maxLines,
+    double titlePadding = 0,
+  }) {
+    return Text(
+      tr(),
+      maxLines: maxLines,
+      overflow: maxLines == null ? null : TextOverflow.ellipsis,
+      style: style ?? AppStyles.body.copyWith(color: context.onSurfaceColor),
+      textAlign: textAlign,
+    ).paddingHorizontal(titlePadding);
   }
 
   // Widget text({

@@ -113,18 +113,20 @@ class AppAssets {
 
   // ==================== QUICK ACCESS ====================
 
+
+
+
+}
   /// الوصول السريع للصور
-  static class Images {
+  abstract class ImagesAssets {
     static const String logo = AppAssets.logo;
     static const String logoDark = AppAssets.logoDark;
     static const String placeholder = AppAssets.placeholder;
     static const String error = AppAssets.error;
     static const String success = AppAssets.success;
     static const String loading = AppAssets.loading;
-  }
-
-  /// الوصول السريع للأيقونات
-  static class Icons {
+  }  /// الوصول السريع للأيقونات
+  abstract class IconsAssets {
     static const String home = AppAssets.home;
     static const String profile = AppAssets.profile;
     static const String settings = AppAssets.settings;
@@ -135,4 +137,3 @@ class AppAssets {
     static const String close = AppAssets.close;
     static const String menu = AppAssets.menu;
   }
-}

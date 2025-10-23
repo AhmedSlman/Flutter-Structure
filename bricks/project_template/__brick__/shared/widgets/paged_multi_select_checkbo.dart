@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../core/extensions/context_extensions.dart';
+import '../../core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/widgets/customtext.dart';
 import 'animation_build_widget.dart';
 import 'edit_text_widget.dart';
@@ -129,7 +131,7 @@ class _PaginatedMultiSelectDropDownState<T>
               if (widget.label != null) ...[
                 CustomText(
                   widget.label?.toString() ?? '',
-                  color: Colors.black,
+                  color: AppColors.textPrimary,
                   fontSize: 15,
                 ),
                 const SizedBox(height: 10),
@@ -241,7 +243,7 @@ class _PaginatedMultiSelectDropDownState<T>
               ),
               CustomText(
                 state.errorText ?? "",
-                color: Colors.red,
+                color: AppColors.error,
                 fontSize: 15,
               ),
             ],
@@ -306,7 +308,7 @@ class _PaginatedMultiSelectDropDownState<T>
                                       vertical: 8,
                                     ),
                                     child: TextFormFieldWidget(
-                                      hintText: "search",
+                                      hintText: "search".tr(),
                                       controller: search,
                                       onFieldSubmitted: (value) {
                                         pagingController.refresh();
@@ -338,8 +340,8 @@ class _PaginatedMultiSelectDropDownState<T>
                                             },
                                             title: Text(
                                               widget.itemAsString.call(item),
-                                              style: const TextStyle(
-                                                color: Colors.black,
+                                              style: TextStyle(
+                                                color: AppColors.textPrimary,
                                                 fontSize: 15,
                                               ),
                                             ),
@@ -372,10 +374,10 @@ class _PaginatedMultiSelectDropDownState<T>
                                             onPressed: () {
                                               closeOverlay();
                                             },
-                                            child: const Text(
-                                              "Ok",
+                                            child: Text(
+                                              "ok".tr(),
                                               style: TextStyle(
-                                                color: Colors.white,
+                                                color: AppColors.onPrimary,
                                                 fontSize: 15,
                                               ),
                                             ),

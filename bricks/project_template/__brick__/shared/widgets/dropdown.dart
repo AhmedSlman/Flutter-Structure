@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../core/theme/app_colors.dart';
 import 'customtext.dart';
 
 class DropDownItem<T> extends StatefulWidget {
@@ -67,7 +67,7 @@ class _DropDownItemState<T> extends State<DropDownItem<T>> with AutomaticKeepAli
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Text(
                   widget.title ?? '',
-                  style: const TextStyle(fontSize: 14, color: Color(0xffA1A7AD)),
+                  style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
                 ),
               ),
             SizedBox(
@@ -86,17 +86,17 @@ class _DropDownItemState<T> extends State<DropDownItem<T>> with AutomaticKeepAli
                       borderRadius: BorderRadius.circular(
                         10,
                       ),
-                      borderSide: BorderSide(color: Color(0xff8CAAC5))),
+                      borderSide: BorderSide(color: AppColors.border)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(
                         widget.radius ?? 10,
                       ),
-                      borderSide: BorderSide(color: Color(0xff8CAAC5))),
+                      borderSide: BorderSide(color: AppColors.primary)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(
                         widget.radius ?? 10,
                       ),
-                      borderSide: BorderSide(color: Color(0xff8CAAC5))),
+                      borderSide: BorderSide(color: AppColors.border)),
                 ),
                 value: widget.inistialValue,
                 items: widget.options
@@ -104,7 +104,7 @@ class _DropDownItemState<T> extends State<DropDownItem<T>> with AutomaticKeepAli
                           value: e,
                           child: CustomText(
                             widget.itemAsString?.call(e) ?? e.toString(),
-                            color: Colors.black,
+                            color: AppColors.textPrimary,
                           ),
                         ))
                     .toList(),

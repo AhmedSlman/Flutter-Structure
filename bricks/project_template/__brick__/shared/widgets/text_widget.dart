@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/extensions/all_extensions.dart';
+import '../../core/theme/app_colors.dart';
 
 class TextWidget extends StatelessWidget {
   final String? title;
@@ -33,8 +34,7 @@ class TextWidget extends StatelessWidget {
         fontWeight: fontWeight,
         decoration: isUnderLine ? TextDecoration.underline : null,
         height: 1.2,
-        // color: color ?? Theme.of(context).textTheme.bodyText1!.color,
-        color: color ?? context.colorScheme.primary,
+        color: color ?? context.primaryColor,
       ),
       textAlign: textAlign,
     );

@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import '../../utils/utils.dart';
-import '../../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../cache/hive_service.dart';
-import '../../services/navigation_service.dart';
+import 'package:go_router/go_router.dart';
+import '../../error/failures.dart';
 
 /// Interceptor for handling authentication
 class AuthInterceptor extends Interceptor {
@@ -20,8 +21,8 @@ class AuthInterceptor extends Interceptor {
     }
 
     // Add language header
-    final language =
-        getLanguage?.call() ?? LocalizationHelper.currentLocale.languageCode;
+    final language = getLanguage?.call() ?? 
+        (EasyLocalization.of(context)?.locale.languageCode ?? "en");
     options.headers['lang'] = language;
 
     // Set Content-Type based on data type
@@ -62,7 +63,7 @@ class AuthInterceptor extends Interceptor {
 
     // Navigate to login screen
     try {
-      NavigationService.goNamed('login');
+      EasyLocalization.navigatorKey.currentContext?.go('/login');
     } catch (e) {
       // If navigation fails, just log the error
       print('Navigation error: $e');

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/router/auth_router.dart';
-import '../../features/home/router/home_router.dart';
 import '../../features/splash/router/splash_router.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'router_names.dart';
 
 /// GoRouter configuration
@@ -17,14 +17,15 @@ class AppRouter {
       // Feature Routers
       ...SplashRouter.routes,
       ...AuthRouter.routes,
-      ...HomeRouter.routes,
     ],
 
     // Error page
     errorPageBuilder: (context, state) => MaterialPage(
       key: state.pageKey,
       child: Scaffold(
-        appBar: AppBar(title: const Text('خطأ')),
+        appBar: AppBar(
+          title: Text('error'.tr()),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +33,7 @@ class AppRouter {
               const Icon(Icons.error_outline, size: 80, color: Colors.red),
               const SizedBox(height: 16),
               Text(
-                'الصفحة غير موجودة',
+                'page_not_found'.tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
@@ -43,7 +44,7 @@ class AppRouter {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () => context.go(AppRoutes.splash),
-                child: const Text('العودة للرئيسية'),
+                child: Text('back_to_home'.tr()),
               ),
             ],
           ),

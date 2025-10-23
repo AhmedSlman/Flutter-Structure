@@ -7,7 +7,6 @@ import 'api_consumer.dart';
 import 'network_config.dart';
 import '../error/error_handler.dart';
 import '../error/failures.dart';
-
 import '../localization/localization_helper.dart';
 import '../services/alerts.dart';
 import '../../shared/widgets/myLoading.dart';
@@ -55,7 +54,8 @@ class DioConsumer implements ApiConsumer {
   Map<String, dynamic> _getDefaultHeaders() {
     return {
       "Accept": "application/json",
-      "lang": LocalizationHelper.currentLocale.languageCode,
+      "lang": LocalizationHelper.isArabic ? "ar" : "en",
+      "Content-Type": "application/json",
       ...config.defaultHeaders,
     };
   }

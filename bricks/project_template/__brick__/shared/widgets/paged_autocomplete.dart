@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../core/extensions/context_extensions.dart';
+import '../../core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/widgets/customtext.dart';
 import 'edit_text_widget.dart';
 
@@ -156,7 +158,7 @@ class _CutomAutoCompleteTextFeildState<T>
                   if (widget.showRequiredStar)
                     CustomText(
                       "*",
-                      color: Colors.red,
+                      color: AppColors.error,
                     )
                 ],
               ),

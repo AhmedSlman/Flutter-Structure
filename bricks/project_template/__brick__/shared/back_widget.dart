@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/extensions/all_extensions.dart';
+import '../core/theme/app_colors.dart';
 
 
 class BackWidget extends StatelessWidget {
@@ -20,7 +21,7 @@ class BackWidget extends StatelessWidget {
         },
         icon: Icon(
           icon ?? Icons.arrow_back_ios,
-          color: color ?? context.colorScheme.primary,
+          color: color ?? context.primaryColor,
           size: size,
         ));
   }

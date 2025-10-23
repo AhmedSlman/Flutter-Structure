@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
 
 // Double Extensions
 extension DoubleExtensions on double? {
@@ -73,4 +74,77 @@ extension DoubleExtensions on double? {
         bottomLeft: Radius.circular(validate()),
         bottomRight: Radius.circular(validate()),
       );
+
+  // ==================== APP COLORS INTEGRATION ====================
+
+  /// إنشاء Container مع لون AppColors
+  Widget containerWithPrimaryColor(BuildContext context) {
+    return Container(
+      width: validate(),
+      height: validate(),
+      color: AppColors.primary(context),
+    );
+  }
+
+  Widget containerWithSecondaryColor(BuildContext context) {
+    return Container(
+      width: validate(),
+      height: validate(),
+      color: AppColors.secondary(context),
+    );
+  }
+
+  Widget containerWithBackgroundColor(BuildContext context) {
+    return Container(
+      width: validate(),
+      height: validate(),
+      color: AppColors.background(context),
+    );
+  }
+
+  Widget containerWithSurfaceColor(BuildContext context) {
+    return Container(
+      width: validate(),
+      height: validate(),
+      color: AppColors.surface(context),
+    );
+  }
+
+  // ==================== APP STYLES INTEGRATION ====================
+
+  /// إنشاء Text مع AppStyles
+  Widget textWithStyle(BuildContext context, String text, {TextStyle? style}) {
+    return Text(
+      text,
+      style: style ?? AppStyles.body.copyWith(fontSize: validate()),
+    );
+  }
+
+  Widget textWithHeaderStyle(BuildContext context, String text) {
+    return Text(
+      text,
+      style: AppStyles.header.copyWith(fontSize: validate()),
+    );
+  }
+
+  Widget textWithSubHeaderStyle(BuildContext context, String text) {
+    return Text(
+      text,
+      style: AppStyles.subHeader.copyWith(fontSize: validate()),
+    );
+  }
+
+  Widget textWithBodyStyle(BuildContext context, String text) {
+    return Text(
+      text,
+      style: AppStyles.body.copyWith(fontSize: validate()),
+    );
+  }
+
+  Widget textWithButtonStyle(BuildContext context, String text) {
+    return Text(
+      text,
+      style: AppStyles.button.copyWith(fontSize: validate()),
+    );
+  }
 }

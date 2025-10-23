@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../core/utils/extentions.dart';
+import '../../core/theme/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'animation_build_widget.dart';
 import 'customtext.dart';
 
@@ -70,7 +72,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
         validator: widget.isRequired
             ? (value) {
                 if (value == null || value.isEmpty) {
-                  return "please Choose ${widget.label}";
+                  return "please_choose".tr() + " ${widget.label}";
                 }
                 return null;
               }
@@ -108,7 +110,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4.0),
                                 side: BorderSide(
-                                  color: Color(0xff8CAAC5),
+                                  color: AppColors.border,
                                   width: 2,
                                 )),
                         child: OverlayPortal(
@@ -170,7 +172,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                                                                                   element == items.data![index])
                                                                               ? Icons.check_box
                                                                               : Icons.check_box_outline_blank,
-                                                                          color: context.colorScheme.primary,
+                                                                          color: context.primaryColor,
                                                                         ),
                                                                         8.pw,
                                                                         CustomText(
@@ -211,7 +213,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                                               padding: EdgeInsets.zero,
                                               deleteIcon: Icon(
                                                 Icons.clear,
-                                                color: Color(0xff8CAAC5),
+                                                color: AppColors.border,
                                                 size: 20,
                                               ),
                                               onDeleted: () {
@@ -220,8 +222,8 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                                               },
                                               shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.circular(4.0),
-                                                  side: BorderSide(color: context.colorScheme.primary, width: 0.5)),
-                                              backgroundColor: context.colorScheme.primary.withOpacity(0.1),
+                                                  side: BorderSide(color: context.primaryColor, width: 0.5)),
+                                              backgroundColor: context.primaryColor.withOpacity(0.1),
                                               label: CustomText(
                                                 widget.itemAsString.call(e),
                                               ),
@@ -236,7 +238,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                                   child: Icon(
                                     _hasOpenedOverlay ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                                     key: ValueKey(_hasOpenedOverlay),
-                                    color: Color(0xff8CAAC5),
+                                    color: AppColors.border,
                                   ),
                                 ),
                                 const SizedBox(
@@ -336,7 +338,7 @@ class _MultiSelectDropDownState<T> extends State<MultiSelectDropDown<T>> {
                                                                         .any((element) => element == items.data![index])
                                                                     ? Icons.check_box
                                                                     : Icons.check_box_outline_blank,
-                                                                color: context.colorScheme.primary,
+                                                                color: context.primaryColor,
                                                               ),
                                                               8.pw,
                                                               CustomText(

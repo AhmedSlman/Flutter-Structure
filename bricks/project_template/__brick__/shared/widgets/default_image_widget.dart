@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/services.dart';
+import '../../core/theme/app_colors.dart';
 
 enum MediaSource { asset, network, file, unsupported }
 
@@ -78,7 +79,7 @@ class DefaultImageWidget extends StatelessWidget {
         child = _buildVideo(context);
         break;
       default:
-        child = const Icon(Icons.broken_image, size: 48);
+        child = Icon(Icons.broken_image, size: 48, color: AppColors.textSecondary);
     }
 
     if (isCircle == true) {
@@ -114,12 +115,12 @@ class DefaultImageWidget extends StatelessWidget {
           placeholder: (ctx, url) =>
               const Center(child: CircularProgressIndicator()),
           errorWidget: (ctx, url, error) =>
-              const Icon(Icons.image_not_supported),
+              Icon(Icons.image_not_supported, color: AppColors.textSecondary),
         );
       case MediaSource.file:
         return Image.file(File(path), fit: fit, width: width, height: height);
       default:
-        return const Icon(Icons.image, size: 48);
+        return Icon(Icons.image, size: 48, color: AppColors.textSecondary);
     }
   }
 
@@ -141,7 +142,7 @@ class DefaultImageWidget extends StatelessWidget {
             const Center(child: CircularProgressIndicator()),
       );
     }
-    return const Icon(Icons.image_not_supported);
+    return Icon(Icons.image_not_supported, color: AppColors.textSecondary);
   }
 
   Widget _buildVideo(BuildContext context) {

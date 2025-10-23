@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../core/theme/app_colors.dart';
 
 class TrendingLoadingItem extends StatelessWidget {
   const TrendingLoadingItem({
@@ -22,8 +23,8 @@ class TrendingLoadingItem extends StatelessWidget {
           5,
           (index) => Card(
                   child: Shimmer.fromColors(
-                baseColor: Colors.grey.shade300,
-                highlightColor: Colors.grey.shade100,
+        baseColor: AppColors.shimmerBase,
+        highlightColor: AppColors.shimmerHighlight,
                 enabled: true,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,8 +68,8 @@ class ProductsLoadnigItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade100,
+        baseColor: AppColors.shimmerBase,
+        highlightColor: AppColors.shimmerHighlight,
       enabled: true,
       child: GridView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -122,8 +123,8 @@ class ImagesLoadnigItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade100,
+        baseColor: AppColors.shimmerBase,
+        highlightColor: AppColors.shimmerHighlight,
       enabled: true,
       child: GridView.builder(
         shrinkWrap: true,
@@ -163,8 +164,8 @@ class VerticalProductLoadingItem extends StatelessWidget {
                   //  width: 150,
                   //     height: 180,
                   child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
+        baseColor: AppColors.shimmerBase,
+        highlightColor: AppColors.shimmerHighlight,
                     enabled: true,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -211,8 +212,8 @@ class LoadingImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade100,
+        baseColor: AppColors.shimmerBase,
+        highlightColor: AppColors.shimmerHighlight,
       enabled: true,
       child: Container(
         width: w ?? double.infinity,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../cache/hive_service.dart';
 import '../services/media/media_service.dart';
-import '../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'general_constants.dart';
 import 'validations.dart';
 
@@ -31,9 +31,6 @@ class Utils {
   static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   // ==================== GETTERS ====================
-
-  /// الحصول على نظام التحقق
-  static Validation get valid => Validation();
 
   /// الحصول على خدمة الوسائط
   static MediaService get media => MediaService();
@@ -114,12 +111,12 @@ class Utils {
 
   /// الحصول على اللغة الحالية
   static String getCurrentLanguage() {
-    return LocalizationHelper.currentLanguageName;
+    return EasyLocalization.of(EasyLocalization.navigatorKey.currentContext!)?.locale.languageCode ?? 'en';
   }
 
   /// التحقق من اللغة العربية
   static bool isArabic() {
-    return LocalizationHelper.isArabic;
+    return EasyLocalization.of(EasyLocalization.navigatorKey.currentContext!)?.locale.languageCode == 'ar';
   }
 
   // ==================== VALIDATION UTILITIES ====================

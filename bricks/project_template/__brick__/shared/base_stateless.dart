@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../core/utils/extentions.dart';
+import '../core/theme/app_colors.dart';
 
 class BaseStateless extends StatelessWidget {
   final Widget body;
@@ -19,7 +19,7 @@ class BaseStateless extends StatelessWidget {
       this.floatingButton,
       this.extendBody,
       this.resizeToAvoidBottomInset,
-      this.backgroundColor = Colors.white})
+      this.backgroundColor})
       : super(key: key);
 
   @override
@@ -52,8 +52,8 @@ class BaseStateless extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: SafeArea(child: body)),
-      backgroundColor: backgroundColor,
+          child: SafeArea(child: body)      ),
+      backgroundColor: backgroundColor ?? context.backgroundColor,
       bottomNavigationBar: bottomNavBar,
     );
   }

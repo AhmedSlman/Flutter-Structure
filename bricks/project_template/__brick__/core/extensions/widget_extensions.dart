@@ -6,8 +6,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../resources/dimansion_manager.dart';
-import '../theme/light_theme.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
+import '../localization/localization_helper.dart';
 import 'all_extensions.dart';
 
 Duration transitionDuration = const Duration(milliseconds: 300);
@@ -116,8 +117,8 @@ extension WidgetExtension on Widget {
     Widget? titleIcon,
     double? fontSize,
     TextStyle? titleStyle,
-    double gap = AppSize.s8,
-    double titlePadding = AppSize.s0,
+    double gap = 8.0,
+    double titlePadding = 0.0,
   }) {
     return title != null
         ? Column(
@@ -129,7 +130,7 @@ extension WidgetExtension on Widget {
                 children: [
                   Text(
                     title,
-                    style: titleStyle ?? context.titleLarge!.bold.s16,
+                    style: titleStyle ?? context.headerStyle,
                   ).paddingHorizontal(titlePadding),
                   titleIcon ?? const SizedBox.shrink(),
                 ],
@@ -144,8 +145,8 @@ extension WidgetExtension on Widget {
   Widget setSvgToView({
     required String svgPath,
     Color? color,
-    double size = AppSize.s24,
-    double gap = AppSize.s8,
+    double size = 24.0,
+    double gap = 8.0,
     bool isEnd = false,
   }) {
     return Row(
@@ -157,6 +158,94 @@ extension WidgetExtension on Widget {
         if (!isEnd) gap.width,
         if (!isEnd) this,
       ],
+    );
+  }
+
+  // ==================== APP COLORS INTEGRATION ====================
+
+  /// تطبيق ألوان AppColors على الويدجت
+  Widget withPrimaryColor(BuildContext context) {
+    return Container(
+      color: AppColors.primary(context),
+      child: this,
+    );
+  }
+
+  Widget withSecondaryColor(BuildContext context) {
+    return Container(
+      color: AppColors.secondary(context),
+      child: this,
+    );
+  }
+
+  Widget withBackgroundColor(BuildContext context) {
+    return Container(
+      color: AppColors.background(context),
+      child: this,
+    );
+  }
+
+  Widget withSurfaceColor(BuildContext context) {
+    return Container(
+      color: AppColors.surface(context),
+      child: this,
+    );
+  }
+
+  Widget withBorderColor(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.border(context)),
+      ),
+      child: this,
+    );
+  }
+
+  // ==================== APP STYLES INTEGRATION ====================
+
+  /// تطبيق أنماط AppStyles على النصوص
+  Widget withHeaderStyle(BuildContext context) {
+    return DefaultTextStyle(
+      style: context.headerStyle,
+      child: this,
+    );
+  }
+
+  Widget withSubHeaderStyle(BuildContext context) {
+    return DefaultTextStyle(
+      style: context.subHeaderStyle,
+      child: this,
+    );
+  }
+
+  Widget withBodyStyle(BuildContext context) {
+    return DefaultTextStyle(
+      style: context.bodyStyle,
+      child: this,
+    );
+  }
+
+  Widget withButtonStyle(BuildContext context) {
+    return DefaultTextStyle(
+      style: context.buttonStyle,
+      child: this,
+    );
+  }
+
+  // ==================== LOCALIZATION INTEGRATION ====================
+
+  /// تطبيق الترجمة على النصوص
+  Widget withTranslation(BuildContext context, String key) {
+    return Text(
+      context.tr(key),
+      style: context.bodyStyle,
+    );
+  }
+
+  Widget withTranslationAndStyle(BuildContext context, String key, TextStyle style) {
+    return Text(
+      context.tr(key),
+      style: style,
     );
   }
 

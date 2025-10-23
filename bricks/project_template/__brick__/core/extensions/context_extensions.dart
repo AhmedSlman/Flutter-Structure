@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
+import '../localization/localization_helper.dart';
 
 double tabletBreakpointGlobal = 600.0;
 double desktopBreakpointGlobal = 720.0;
@@ -72,6 +75,105 @@ extension ContextExtensions on BuildContext {
   void openDrawer() => Scaffold.of(this).openDrawer();
 
   void openEndDrawer() => Scaffold.of(this).openEndDrawer();
+
+  // ==================== LOCALIZATION EXTENSIONS ====================
+
+  /// الحصول على النص المترجم
+  String tr(String key, {List<String>? args, Map<String, String>? namedArgs}) {
+    return LocalizationHelper.tr(key, args: args, namedArgs: namedArgs);
+  }
+
+  /// التحقق من اللغة العربية
+  bool get isArabic => LocalizationHelper.isArabic;
+
+  /// تغيير اللغة
+  Future<void> changeLanguage(String languageName) async {
+    await LocalizationHelper.changeLanguage(languageName);
+  }
+
+  /// تبديل اللغة
+  Future<void> toggleLanguage() async {
+    await LocalizationHelper.toggleLanguage();
+  }
+
+  // ==================== APP COLORS EXTENSIONS ====================
+
+  /// الألوان الديناميكية
+  Color get primaryColor => AppColors.primary(this);
+  Color get secondaryColor => AppColors.secondary(this);
+  Color get backgroundColor => AppColors.background(this);
+  Color get onBackgroundColor => AppColors.onBackground(this);
+  Color get surfaceColor => AppColors.surface(this);
+  Color get onSurfaceColor => AppColors.onSurface(this);
+  Color get surfaceVariantColor => AppColors.surfaceVariant(this);
+  Color get onSurfaceVariantColor => AppColors.onSurfaceVariant(this);
+  Color get borderColor => AppColors.border(this);
+  Color get shadowColor => AppColors.shadow(this);
+
+  /// الألوان الثابتة
+  Color get successColor => AppColors.success;
+  Color get errorColor => AppColors.error;
+  Color get warningColor => AppColors.warning;
+  Color get infoColor => AppColors.info;
+
+  // ==================== APP STYLES EXTENSIONS ====================
+
+  /// أنماط النصوص الشائعة
+  TextStyle get headerStyle => AppStyles.header.copyWith(color: onSurfaceColor);
+  TextStyle get subHeaderStyle => AppStyles.subHeader.copyWith(color: onSurfaceColor);
+  TextStyle get sectionTitleStyle => AppStyles.sectionTitle.copyWith(color: onSurfaceColor);
+  TextStyle get bodyStyle => AppStyles.body.copyWith(color: onSurfaceColor);
+  TextStyle get bodySmallStyle => AppStyles.bodySmall.copyWith(color: onSurfaceColor);
+  TextStyle get bodyLargeStyle => AppStyles.bodyLarge.copyWith(color: onSurfaceColor);
+  TextStyle get labelStyle => AppStyles.label.copyWith(color: onSurfaceColor);
+  TextStyle get labelSmallStyle => AppStyles.labelSmall.copyWith(color: onSurfaceColor);
+  TextStyle get labelLargeStyle => AppStyles.labelLarge.copyWith(color: onSurfaceColor);
+  TextStyle get buttonStyle => AppStyles.button.copyWith(color: onSurfaceColor);
+  TextStyle get buttonSmallStyle => AppStyles.buttonSmall.copyWith(color: onSurfaceColor);
+  TextStyle get buttonLargeStyle => AppStyles.buttonLarge.copyWith(color: onSurfaceColor);
+  TextStyle get inputStyle => AppStyles.input.copyWith(color: onSurfaceColor);
+  TextStyle get hintStyle => AppStyles.hint.copyWith(color: onSurfaceColor);
+  TextStyle get errorStyle => AppStyles.error.copyWith(color: errorColor);
+  TextStyle get successStyle => AppStyles.success.copyWith(color: successColor);
+  TextStyle get captionStyle => AppStyles.caption.copyWith(color: onSurfaceColor);
+  TextStyle get captionSmallStyle => AppStyles.captionSmall.copyWith(color: onSurfaceColor);
+  TextStyle get overlineStyle => AppStyles.overline.copyWith(color: onSurfaceColor);
+
+  // ==================== HELPER METHODS ====================
+
+  /// إنشاء TextStyle مخصص مع الألوان الحالية
+  TextStyle customTextStyle({
+    required double fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? height,
+    double? letterSpacing,
+    TextDecoration? decoration,
+  }) {
+    return AppStyles.custom(
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color ?? onSurfaceColor,
+      height: height,
+      letterSpacing: letterSpacing,
+      decoration: decoration,
+    );
+  }
+
+  /// إنشاء TextStyle مع لون مخصص
+  TextStyle textStyleWithColor(TextStyle style, Color color) {
+    return AppStyles.withColor(style, color);
+  }
+
+  /// إنشاء TextStyle مع وزن خط مخصص
+  TextStyle textStyleWithWeight(TextStyle style, FontWeight weight) {
+    return AppStyles.withWeight(style, weight);
+  }
+
+  /// إنشاء TextStyle مع حجم خط مخصص
+  TextStyle textStyleWithSize(TextStyle style, double size) {
+    return AppStyles.withSize(style, size);
+  }
 }
 
 extension ThemeExtension on BuildContext {
