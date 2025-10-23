@@ -23,19 +23,4 @@ class GeneralCubit extends Cubit<GeneralState> {
     }
     emit(GeneralChangeAppTheme());
   }
-
-  changeLocale(String localeName) {
-    if (EasyLocalization.of(context)?.locale.languageCode == localeName) return;
-
-    context.setLocale(Locale(localeName));
-    emit(GeneralChangeLocale(locale: EasyLocalization.of(context)?.locale.languageCode ?? 'en'));
-  }
-
-  /// تبديل اللغة
-  toggleLanguage() {
-    final currentLocale = EasyLocalization.of(context)?.locale ?? const Locale('en');
-    final newLocale = currentLocale.languageCode == 'ar' ? const Locale('en') : const Locale('ar');
-    context.setLocale(newLocale);
-    emit(GeneralChangeLocale(locale: EasyLocalization.of(context)?.locale.languageCode ?? 'en'));
-  }
 }
