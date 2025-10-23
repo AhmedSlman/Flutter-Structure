@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-import '../localization/localization_helper.dart';
 import 'utils.dart';
 
 // ==================== ASSET EXTENSIONS ====================
@@ -35,7 +35,7 @@ extension Dates on String {
     if (isNotEmpty) {
       try {
         DateTime date = DateTime.parse(this);
-        return DateFormat(format, LocalizationHelper.isArabic ? "ar" : "en").format(date);
+        return DateFormat(format, EasyLocalization.of(context)?.locale.languageCode == 'ar' ? "ar" : "en").format(date);
       } catch (e) {
         return "";
       }
@@ -153,7 +153,7 @@ extension StringCasingExtension on String {
   /// تحويل الوقت إلى 24 ساعة
   String get to24h {
     try {
-      final parse = DateFormat("hh:mm a", LocalizationHelper.isArabic ? "ar" : "en").parse(this);
+      final parse = DateFormat("hh:mm a", EasyLocalization.of(context)?.locale.languageCode == 'ar' ? "ar" : "en").parse(this);
       return DateFormat("HH:mm", "en").format(parse);
     } catch (e) {
       return this;
@@ -247,7 +247,7 @@ extension FormatData on DateTime {
 extension LocalReverse on List {
   /// عكس القائمة حسب اللغة
   List get reverseLocal {
-    if (LocalizationHelper.isArabic) {
+    if (EasyLocalization.of(context)?.locale.languageCode == 'ar') {
       return reversed.toList();
     }
     return this;

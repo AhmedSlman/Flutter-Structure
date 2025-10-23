@@ -54,7 +54,7 @@ class DioConsumer implements ApiConsumer {
   Map<String, dynamic> _getDefaultHeaders() {
     return {
       "Accept": "application/json",
-      "lang": LocalizationHelper.isArabic ? "ar" : "en",
+      "lang": EasyLocalization.of(context)?.locale.languageCode ?? "en",
       "Content-Type": "application/json",
       ...config.defaultHeaders,
     };

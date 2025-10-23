@@ -80,20 +80,22 @@ extension ContextExtensions on BuildContext {
 
   /// الحصول على النص المترجم
   String tr(String key, {List<String>? args, Map<String, String>? namedArgs}) {
-    return LocalizationHelper.tr(key, args: args, namedArgs: namedArgs);
+    return key.tr(args: args, namedArgs: namedArgs);
   }
 
   /// التحقق من اللغة العربية
-  bool get isArabic => LocalizationHelper.isArabic;
+  bool get isArabic => EasyLocalization.isArabic;
 
   /// تغيير اللغة
   Future<void> changeLanguage(String languageName) async {
-    await LocalizationHelper.changeLanguage(languageName);
+    await context.setLocale(Locale(languageName));
   }
 
   /// تبديل اللغة
   Future<void> toggleLanguage() async {
-    await LocalizationHelper.toggleLanguage();
+    final currentLocale = EasyLocalization.of(this)?.locale ?? const Locale('en');
+    final newLocale = currentLocale.languageCode == 'ar' ? const Locale('en') : const Locale('ar');
+    await setLocale(newLocale);
   }
 
   // ==================== APP COLORS EXTENSIONS ====================

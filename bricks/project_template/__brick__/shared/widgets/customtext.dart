@@ -20,7 +20,7 @@ class CustomText extends StatelessWidget {
       FontWeight? weight}) {
     switch (textStyleEnum) {
       case TextStyleEnum.title:
-        return AppStyles.headerStyle.copyWith(
+        return AppStyles.header.copyWith(
             decoration: decoration,
             color: color ?? AppColors.textPrimary,
             height: height,
@@ -29,7 +29,7 @@ class CustomText extends StatelessWidget {
             overflow: overflow ?? TextOverflow.visible,
             fontFamily: fontFamily);
       case TextStyleEnum.caption:
-        return AppStyles.captionStyle.copyWith(
+        return AppStyles.caption.copyWith(
             decoration: decoration,
             color: color ?? AppColors.textSecondary,
             fontWeight: weight,
@@ -39,7 +39,7 @@ class CustomText extends StatelessWidget {
             fontFamily: fontFamily);
 
       default:
-        return AppStyles.bodyStyle.copyWith(
+        return AppStyles.body.copyWith(
             decoration: decoration,
             color: color ?? AppColors.textPrimary,
             height: height,

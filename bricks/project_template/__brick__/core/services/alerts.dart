@@ -120,12 +120,12 @@ class Alerts {
                     onPressed: () {
                       Navigator.pop(context, false);
                     },
-                    child: Text(LocalizationHelper.isArabic ? "لا" : "No")),
+                    child: Text(EasyLocalization.isArabic ? "لا" : "No")),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context, true);
                     },
-                    child: Text(LocalizationHelper.isArabic ? "نعم" : "Yes"))
+                    child: Text(EasyLocalization.isArabic ? "نعم" : "Yes"))
               ],
             )));
   }
@@ -140,7 +140,7 @@ class Alerts {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             child: SnackDesgin(
               state: SnackState.failed,
-              text: LocalizationHelper.isArabic ? "حدث خطأ ما" : "An error occurred",
+              text: EasyLocalization.isArabic ? "حدث خطأ ما" : "An error occurred",
             )),
       ),
     );

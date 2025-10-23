@@ -122,7 +122,7 @@ extension StringExtension on String? {
 
   /// الحصول على النص المترجم
   String tr({List<String>? args, Map<String, String>? namedArgs}) {
-    return LocalizationHelper.tr(this ?? '', args: args, namedArgs: namedArgs);
+    return (this ?? '').tr(args: args, namedArgs: namedArgs);
   }
 
   /// إنشاء Text widget مع الترجمة والألوان الحالية

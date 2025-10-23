@@ -23,13 +23,13 @@ extension DateTimeExtensions on DateTime? {
 
   /// تنسيق التاريخ مع الترجمة
   String formatWithLocalization({String format = 'dd/MM/yyyy'}) {
-    final locale = LocalizationHelper.isArabic ? 'ar' : 'en';
+    final locale = EasyLocalization.isArabic ? 'ar' : 'en';
     return DateFormat(format, locale).format(validate);
   }
 
   /// تنسيق الوقت مع الترجمة
   String formatTimeWithLocalization({String format = 'hh:mm a'}) {
-    final locale = LocalizationHelper.isArabic ? 'ar' : 'en';
+    final locale = EasyLocalization.isArabic ? 'ar' : 'en';
     return DateFormat(format, locale).format(validate);
   }
 
@@ -54,7 +54,7 @@ extension DurationExtensions on Duration {
 
   /// تنسيق المدة مع الترجمة
   String formatDurationWithLocalization() {
-    if (LocalizationHelper.isArabic) {
+    if (EasyLocalization.isArabic) {
       return formatDurationArabic();
     } else {
       return formatDurationEnglish();

@@ -79,7 +79,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.maxLengh,
     this.errorText,
     this.controller,
-    this.activeBorderColor = AppColors.primary,
+    this.activeBorderColor,
     this.borderRadius = 30.0,
     this.borderColor = Colors.black,
     this.backgroundColor,
@@ -118,7 +118,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.suffixIcon,
     this.expanded = false,
     this.floatingHint = false,
-    this.activeBorderColor = Colors.transparent,
+    this.activeBorderColor,
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
@@ -165,7 +165,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.suffixIcon,
     this.expanded = false,
     this.floatingHint = false,
-    this.activeBorderColor = Colors.transparent,
+    this.activeBorderColor,
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
@@ -209,7 +209,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.suffixIcon,
     this.expanded = false,
     this.floatingHint = false,
-    this.activeBorderColor = Colors.transparent,
+    this.activeBorderColor,
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
@@ -255,7 +255,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.suffixIcon,
     this.expanded = false,
     this.floatingHint = false,
-    this.activeBorderColor = Colors.transparent,
+    this.activeBorderColor,
     this.borderRadius = 15.0,
     this.borderColor = Colors.transparent,
     this.backgroundColor = const Color(0xffF6F6F6),
@@ -369,7 +369,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: AppStyles.labelStyle.copyWith(
+            style: AppStyles.label.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 12,
             ),
@@ -486,7 +486,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
 
   InputBorder borderType() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: widget.activeBorderColor, width: 1),
+      borderSide: BorderSide(color: widget.activeBorderColor ?? AppColors.primary(context), width: 1),
       borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
     );
   }

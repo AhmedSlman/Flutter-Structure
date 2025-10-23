@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../theme/theme_manager.dart';
 
 part 'general_state.dart';
@@ -25,15 +25,17 @@ class GeneralCubit extends Cubit<GeneralState> {
   }
 
   changeLocale(String localeName) {
-    if (LocalizationHelper.currentLanguageName == localeName) return;
+    if (EasyLocalization.of(context)?.locale.languageCode == localeName) return;
 
-    LocalizationHelper.changeLanguage(localeName);
-    emit(GeneralChangeLocale(locale: LocalizationHelper.currentLanguageName));
+    context.setLocale(Locale(localeName));
+    emit(GeneralChangeLocale(locale: EasyLocalization.of(context)?.locale.languageCode ?? 'en'));
   }
 
   /// تبديل اللغة
   toggleLanguage() {
-    LocalizationHelper.toggleLanguage();
-    emit(GeneralChangeLocale(locale: LocalizationHelper.currentLanguageName));
+    final currentLocale = EasyLocalization.of(context)?.locale ?? const Locale('en');
+    final newLocale = currentLocale.languageCode == 'ar' ? const Locale('en') : const Locale('ar');
+    context.setLocale(newLocale);
+    emit(GeneralChangeLocale(locale: EasyLocalization.of(context)?.locale.languageCode ?? 'en'));
   }
 }

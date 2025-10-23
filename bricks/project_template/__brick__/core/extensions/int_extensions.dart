@@ -152,7 +152,7 @@ extension IntExtensions on int? {
 
   /// تنسيق اليوم مع الترجمة
   String toWeekDayWithLocalization({bool isHalfName = false}) {
-    if (LocalizationHelper.isArabic) {
+    if (EasyLocalization.isArabic) {
       return toWeekDayArabic(isHalfName: isHalfName);
     } else {
       return toWeekDayEnglish(isHalfName: isHalfName);
@@ -190,7 +190,7 @@ extension IntExtensions on int? {
 
   /// تنسيق الشهر مع الترجمة
   String toMonthNameWithLocalization({bool isHalfName = false}) {
-    if (LocalizationHelper.isArabic) {
+    if (EasyLocalization.isArabic) {
       return toMonthNameArabic(isHalfName: isHalfName);
     } else {
       return toMonthNameEnglish(isHalfName: isHalfName);

@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
     this.statusCode,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً' : 'Server error occurred, please try again later'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً' : 'Server error occurred, please try again later'));
 }
 
 /// Network-related failures (connection issues)
@@ -50,7 +50,7 @@ class NetworkFailure extends Failure {
     super.code = 'NETWORK_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في الاتصال بالإنترنت' : 'Network connection error'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في الاتصال بالإنترنت' : 'Network connection error'));
 }
 
 /// No internet connection failure
@@ -60,7 +60,7 @@ class NoInternetFailure extends Failure {
     super.code = 'NO_INTERNET',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'لا يوجد اتصال بالإنترنت' : 'No internet connection'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'لا يوجد اتصال بالإنترنت' : 'No internet connection'));
 }
 
 /// Timeout failures
@@ -70,7 +70,7 @@ class TimeoutFailure extends Failure {
     super.code = 'TIMEOUT',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى' : 'Connection timeout, please try again'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى' : 'Connection timeout, please try again'));
 }
 
 /// Cache-related failures
@@ -80,7 +80,7 @@ class CacheFailure extends Failure {
     super.code = 'CACHE_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ في التخزين المؤقت' : 'Cache error occurred'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في التخزين المؤقت' : 'Cache error occurred'));
 }
 
 /// Authentication failures (401)
@@ -91,7 +91,7 @@ class AuthFailure extends Failure {
     super.originalError,
     super.stackTrace,
   }) : super(
-         message: message ?? (LocalizationHelper.isArabic ? 'فشلت عملية المصادقة، يرجى تسجيل الدخول مرة أخرى' : 'Authentication failed, please login again'),
+         message: message ?? (EasyLocalization.isArabic ? 'فشلت عملية المصادقة، يرجى تسجيل الدخول مرة أخرى' : 'Authentication failed, please login again'),
        );
 }
 
@@ -102,7 +102,7 @@ class PermissionFailure extends Failure {
     super.code = 'PERMISSION_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'ليس لديك صلاحية للوصول إلى هذا المورد' : 'You do not have permission to access this resource'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'ليس لديك صلاحية للوصول إلى هذا المورد' : 'You do not have permission to access this resource'));
 }
 
 /// Not found failures (404)
@@ -112,7 +112,7 @@ class NotFoundFailure extends Failure {
     super.code = 'NOT_FOUND',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'المورد المطلوب غير موجود' : 'The requested resource was not found'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'المورد المطلوب غير موجود' : 'The requested resource was not found'));
 }
 
 /// Validation failures (422)
@@ -125,7 +125,7 @@ class ValidationFailure extends Failure {
     this.errors,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (LocalizationHelper.isArabic ? 'البيانات المدخلة غير صحيحة' : 'Invalid input data'));
+  }) : super(message: message ?? (EasyLocalization.isArabic ? 'البيانات المدخلة غير صحيحة' : 'Invalid input data'));
 }
 
 /// Bad request failures (400)

@@ -4,6 +4,7 @@ import '../../core/theme/app_colors.dart';
 import 'customtext.dart';
 
 AlertDialog alertDialog(
+    BuildContext context,
     Color? backgroundColor,
     AlignmentGeometry? alignment,
     Widget? icon,
@@ -20,7 +21,7 @@ AlertDialog alertDialog(
     //     Icon(
     //       Icons.delete,
     //       size: 40,
-    //       color: AppColors.primary,
+    //       color: AppColors.primary(context),
     //     ),
     content: CustomText(
       title,
@@ -34,7 +35,7 @@ AlertDialog alertDialog(
           elevation: 0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: BorderSide(color: AppColors.primary, width: 1)),
+              side: BorderSide(color: AppColors.primary(context), width: 1)),
           child: InkWell(
             onTap: () => action1.call(),
             child: Padding(
@@ -42,17 +43,17 @@ AlertDialog alertDialog(
               child: CustomText(
                 action1title,
                 textStyleEnum: TextStyleEnum.normal,
-                color: AppColors.primary,
+                color: AppColors.primary(context),
               ),
             ),
           )),
       Card(
           clipBehavior: Clip.hardEdge,
           elevation: 0,
-          color: AppColors.primary,
+          color: AppColors.primary(context),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: BorderSide(color: AppColors.primary, width: 1)),
+              side: BorderSide(color: AppColors.primary(context), width: 1)),
           child: InkWell(
             onTap: () {
               action2.call();

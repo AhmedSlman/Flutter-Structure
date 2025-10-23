@@ -89,7 +89,7 @@ class ItemOfContact extends StatelessWidget {
                         width: 25,
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: AppColors.primary),
+                            border: Border.all(color: AppColors.primary(context)),
                             shape: BoxShape.circle),
                       ) */
               ],

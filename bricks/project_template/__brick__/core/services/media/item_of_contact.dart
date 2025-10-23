@@ -38,7 +38,7 @@ class ItemOfContact extends StatelessWidget {
                   title ?? '', 
                   fontSize: 17, 
                   weight: FontWeight.w400,
-                  color: LocalizationHelper.isArabic ? Colors.white : Colors.black,
+                  color: EasyLocalization.isArabic ? Colors.white : Colors.black,
                 ),
                 const Spacer(),
                 choose
@@ -69,7 +69,7 @@ class ItemOfContact extends StatelessWidget {
                 CustomText(
                   title ?? '', 
                   fontSize: 17,
-                  color: LocalizationHelper.isArabic ? Colors.white : Colors.black,
+                  color: EasyLocalization.isArabic ? Colors.white : Colors.black,
                 ),
                 const Spacer(),
                 choose

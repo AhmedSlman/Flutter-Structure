@@ -131,6 +131,25 @@ class AppColors {
   /// لون حدود الخطأ
   static const Color borderError = Color(0xFFE53E3E);
 
+  // ==================== TEXT COLORS (FIXED) ====================
+
+  /// لون النص الأساسي
+  static const Color textPrimary = Color(0xFF212121);
+  static const Color textSecondary = Color(0xFF757575);
+  static const Color textHint = Color(0xFF9E9E9E);
+  static const Color textDisabled = Color(0xFFBDBDBD);
+
+  // ==================== SHIMMER COLORS (FIXED) ====================
+
+  /// ألوان الـ Shimmer
+  static const Color shimmerBase = Color(0xFFE0E0E0);
+  static const Color shimmerHighlight = Color(0xFFF5F5F5);
+
+  // ==================== ON PRIMARY COLORS (FIXED) ====================
+
+  /// لون النص على اللون الأساسي
+  static const Color onPrimary = Color(0xFFFFFFFF);
+
   // ==================== HELPER METHODS ====================
 
   /// إنشاء MaterialColor من لون

@@ -34,13 +34,13 @@ class ErrorHandler {
 
       case DioExceptionType.cancel:
         return UnknownFailure(
-          message: LocalizationHelper.isArabic ? 'تم إلغاء الطلب' : 'Request cancelled',
+          message: EasyLocalization.isArabic ? 'تم إلغاء الطلب' : 'Request cancelled',
           code: 'REQUEST_CANCELLED',
         );
 
       case DioExceptionType.badCertificate:
         return NetworkFailure(
-          message: LocalizationHelper.isArabic ? 'خطأ في شهادة الأمان' : 'Bad certificate',
+          message: EasyLocalization.isArabic ? 'خطأ في شهادة الأمان' : 'Bad certificate',
           code: 'BAD_CERTIFICATE',
         );
 
@@ -123,7 +123,7 @@ class ErrorHandler {
 
       case 429:
         return ServerFailure(
-          message: LocalizationHelper.isArabic ? 'تم تجاوز عدد الطلبات المسموح بها' : 'Too many requests',
+          message: EasyLocalization.isArabic ? 'تم تجاوز عدد الطلبات المسموح بها' : 'Too many requests',
           code: 'TOO_MANY_REQUESTS',
         );
 
@@ -140,7 +140,7 @@ class ErrorHandler {
 
       default:
         return UnknownFailure(
-          message: message ?? (LocalizationHelper.isArabic ? 'حدث خطأ غير متوقع' : 'Unexpected error occurred'),
+          message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ غير متوقع' : 'Unexpected error occurred'),
           code: 'HTTP_$statusCode',
           originalError: error,
           stackTrace: error.stackTrace,
@@ -170,7 +170,7 @@ class ErrorHandler {
 
     if (exception is FormatException) {
       return UnknownFailure(
-        message: LocalizationHelper.isArabic ? 'خطأ في تنسيق البيانات' : 'Data format error',
+        message: EasyLocalization.isArabic ? 'خطأ في تنسيق البيانات' : 'Data format error',
         code: 'FORMAT_ERROR',
       );
     }

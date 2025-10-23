@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
                   ? ThemeMode.light
                   : ThemeMode.dark,
               localizationsDelegates: context.localizationDelegates,
-              supportedLocales: LocalizationHelper.supportedLocales,
+              supportedLocales: const [Locale('en'), Locale('ar')],
               locale: context.locale,
               builder: (_, child) {
                 final botToastBuilder = BotToastInit();
