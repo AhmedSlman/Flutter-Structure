@@ -34,7 +34,7 @@ abstract class Failure {
 class ServerFailure extends Failure {
   final int? statusCode;
 
-  const ServerFailure({
+  ServerFailure({
     String? message,
     super.code = 'SERVER_ERROR',
     this.statusCode,
@@ -45,7 +45,7 @@ class ServerFailure extends Failure {
 
 /// Network-related failures (connection issues)
 class NetworkFailure extends Failure {
-  const NetworkFailure({
+  NetworkFailure({
     String? message,
     super.code = 'NETWORK_ERROR',
     super.originalError,
@@ -55,7 +55,7 @@ class NetworkFailure extends Failure {
 
 /// No internet connection failure
 class NoInternetFailure extends Failure {
-  const NoInternetFailure({
+  NoInternetFailure({
     String? message,
     super.code = 'NO_INTERNET',
     super.originalError,
@@ -65,7 +65,7 @@ class NoInternetFailure extends Failure {
 
 /// Timeout failures
 class TimeoutFailure extends Failure {
-  const TimeoutFailure({
+  TimeoutFailure({
     String? message,
     super.code = 'TIMEOUT',
     super.originalError,
@@ -75,7 +75,7 @@ class TimeoutFailure extends Failure {
 
 /// Cache-related failures
 class CacheFailure extends Failure {
-  const CacheFailure({
+  CacheFailure({
     String? message,
     super.code = 'CACHE_ERROR',
     super.originalError,
@@ -85,7 +85,7 @@ class CacheFailure extends Failure {
 
 /// Authentication failures (401)
 class AuthFailure extends Failure {
-  const AuthFailure({
+  AuthFailure({
     String? message,
     super.code = 'AUTH_ERROR',
     super.originalError,
@@ -95,7 +95,7 @@ class AuthFailure extends Failure {
 
 /// Authorization failures (403)
 class PermissionFailure extends Failure {
-  const PermissionFailure({
+  PermissionFailure({
     String? message,
     super.code = 'PERMISSION_ERROR',
     super.originalError,
@@ -105,7 +105,7 @@ class PermissionFailure extends Failure {
 
 /// Not found failures (404)
 class NotFoundFailure extends Failure {
-  const NotFoundFailure({
+  NotFoundFailure({
     String? message,
     super.code = 'NOT_FOUND',
     super.originalError,
@@ -117,7 +117,7 @@ class NotFoundFailure extends Failure {
 class ValidationFailure extends Failure {
   final Map<String, List<String>>? errors;
 
-  const ValidationFailure({
+  ValidationFailure({
     String? message,
     super.code = 'VALIDATION_ERROR',
     this.errors,
@@ -128,7 +128,7 @@ class ValidationFailure extends Failure {
 
 /// Bad request failures (400)
 class BadRequestFailure extends Failure {
-  const BadRequestFailure({
+  BadRequestFailure({
     String? message,
     super.code = 'BAD_REQUEST',
     super.originalError,
@@ -138,7 +138,7 @@ class BadRequestFailure extends Failure {
 
 /// No data available failure
 class NoDataFailure extends Failure {
-  const NoDataFailure({
+  NoDataFailure({
     String? message,
     super.code = 'NO_DATA',
     super.originalError,
@@ -148,7 +148,7 @@ class NoDataFailure extends Failure {
 
 /// Unknown/Unexpected failures
 class UnknownFailure extends Failure {
-  const UnknownFailure({
+  UnknownFailure({
     String? message,
     super.code = 'UNKNOWN_ERROR',
     super.originalError,

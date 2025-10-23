@@ -31,9 +31,7 @@ class ApiResult<T> {
       try {
         return ApiResult.success(mapper(data!));
       } catch (e) {
-        return ApiResult.failure(
-          const UnknownFailure(message: 'Error mapping data'),
-        );
+        return ApiResult.failure(UnknownFailure(message: 'Error mapping data'));
       }
     }
     return ApiResult.failure(failure!);

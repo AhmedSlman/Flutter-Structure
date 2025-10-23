@@ -1,10 +1,6 @@
 import 'dart:io';
 import 'dart:math';
-import 'package:flutter/material.dart';
-
 import '../cache/hive_service.dart';
-import '../services/media/media_service.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'general_constants.dart';
 import 'validations.dart';
 
@@ -31,9 +27,6 @@ class Utils {
   static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   // ==================== GETTERS ====================
-
-  /// الحصول على خدمة الوسائط
-  static MediaService get media => MediaService();
 
   // ==================== USER MANAGEMENT ====================
 
@@ -108,16 +101,6 @@ class Utils {
   }
 
   // ==================== LANGUAGE UTILITIES ====================
-
-  /// الحصول على اللغة الحالية
-  static String getCurrentLanguage() {
-    return EasyLocalization.of(EasyLocalization.navigatorKey.currentContext!)?.locale.languageCode ?? 'en';
-  }
-
-  /// التحقق من اللغة العربية
-  static bool isArabic() {
-    return EasyLocalization.of(EasyLocalization.navigatorKey.currentContext!)?.locale.languageCode == 'ar';
-  }
 
   // ==================== VALIDATION UTILITIES ====================
 
