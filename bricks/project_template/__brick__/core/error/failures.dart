@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import '../localization/localization_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Base failure class for all application failures
 /// Inspired by Clean Architecture principles
@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
     this.statusCode,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً' : 'Server error occurred, please try again later'));
+  }) : super(message: message ?? 'server_error_occurred'.tr());
 }
 
 /// Network-related failures (connection issues)
@@ -50,7 +50,7 @@ class NetworkFailure extends Failure {
     super.code = 'NETWORK_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في الاتصال بالإنترنت' : 'Network connection error'));
+  }) : super(message: message ?? 'network_connection_error'.tr());
 }
 
 /// No internet connection failure
@@ -60,7 +60,7 @@ class NoInternetFailure extends Failure {
     super.code = 'NO_INTERNET',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'لا يوجد اتصال بالإنترنت' : 'No internet connection'));
+  }) : super(message: message ?? 'no_internet_connection'.tr());
 }
 
 /// Timeout failures
@@ -70,7 +70,7 @@ class TimeoutFailure extends Failure {
     super.code = 'TIMEOUT',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'انتهت مهلة الاتصال، يرجى المحاولة مرة أخرى' : 'Connection timeout, please try again'));
+  }) : super(message: message ?? 'connection_timeout'.tr());
 }
 
 /// Cache-related failures
@@ -80,7 +80,7 @@ class CacheFailure extends Failure {
     super.code = 'CACHE_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ في التخزين المؤقت' : 'Cache error occurred'));
+  }) : super(message: message ?? 'cache_error_occurred'.tr());
 }
 
 /// Authentication failures (401)
@@ -90,9 +90,7 @@ class AuthFailure extends Failure {
     super.code = 'AUTH_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(
-         message: message ?? (EasyLocalization.isArabic ? 'فشلت عملية المصادقة، يرجى تسجيل الدخول مرة أخرى' : 'Authentication failed, please login again'),
-       );
+  }) : super(message: message ?? 'authentication_failed'.tr());
 }
 
 /// Authorization failures (403)
@@ -102,7 +100,7 @@ class PermissionFailure extends Failure {
     super.code = 'PERMISSION_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'ليس لديك صلاحية للوصول إلى هذا المورد' : 'You do not have permission to access this resource'));
+  }) : super(message: message ?? 'no_permission_access_resource'.tr());
 }
 
 /// Not found failures (404)
@@ -112,7 +110,7 @@ class NotFoundFailure extends Failure {
     super.code = 'NOT_FOUND',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'المورد المطلوب غير موجود' : 'The requested resource was not found'));
+  }) : super(message: message ?? 'resource_not_found'.tr());
 }
 
 /// Validation failures (422)
@@ -125,7 +123,7 @@ class ValidationFailure extends Failure {
     this.errors,
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? (EasyLocalization.isArabic ? 'البيانات المدخلة غير صحيحة' : 'Invalid input data'));
+  }) : super(message: message ?? 'invalid_input_data'.tr());
 }
 
 /// Bad request failures (400)
@@ -135,7 +133,7 @@ class BadRequestFailure extends Failure {
     super.code = 'BAD_REQUEST',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'الطلب غير صحيح');
+  }) : super(message: message ?? 'bad_request'.tr());
 }
 
 /// No data available failure
@@ -145,7 +143,7 @@ class NoDataFailure extends Failure {
     super.code = 'NO_DATA',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'لا توجد بيانات متاحة');
+  }) : super(message: message ?? 'no_data_available'.tr());
 }
 
 /// Unknown/Unexpected failures
@@ -155,7 +153,7 @@ class UnknownFailure extends Failure {
     super.code = 'UNKNOWN_ERROR',
     super.originalError,
     super.stackTrace,
-  }) : super(message: message ?? 'حدث خطأ غير متوقع');
+  }) : super(message: message ?? 'unexpected_error_occurred'.tr());
 }
 
 /// Extension methods for Failure
@@ -184,13 +182,13 @@ extension FailureExtensions on Failure {
   /// Get user-friendly error message
   String get userMessage {
     if (isNetworkError) {
-      return 'تحقق من اتصالك بالإنترنت وحاول مرة أخرى';
+      return 'check_internet_connection'.tr();
     } else if (isServerError) {
-      return 'حدث خطأ في الخادم، يرجى المحاولة لاحقاً';
+      return 'server_error_try_later'.tr();
     } else if (isAuthError) {
-      return 'يرجى تسجيل الدخول مرة أخرى';
+      return 'please_login_again'.tr();
     } else if (isValidationError) {
-      return 'يرجى التحقق من البيانات المدخلة';
+      return 'check_input_data'.tr();
     } else {
       return message;
     }

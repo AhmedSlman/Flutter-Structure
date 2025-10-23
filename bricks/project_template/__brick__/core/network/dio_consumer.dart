@@ -7,9 +7,6 @@ import 'api_consumer.dart';
 import 'network_config.dart';
 import '../error/error_handler.dart';
 import '../error/failures.dart';
-import '../localization/localization_helper.dart';
-import '../services/alerts.dart';
-import '../../shared/widgets/myLoading.dart';
 import '../utils/utils.dart';
 
 /// Comprehensive Dio implementation of ApiConsumer
@@ -54,7 +51,7 @@ class DioConsumer implements ApiConsumer {
   Map<String, dynamic> _getDefaultHeaders() {
     return {
       "Accept": "application/json",
-      "lang": EasyLocalization.of(context)?.locale.languageCode ?? "en",
+      "lang": "en",
       "Content-Type": "application/json",
       ...config.defaultHeaders,
     };
@@ -83,16 +80,13 @@ class DioConsumer implements ApiConsumer {
     bool showLoading = false,
   }) async {
     try {
-      if (showLoading) MyLoading.show();
       final response = await request();
-      if (showLoading) MyLoading.dismis();
 
       if (parser != null) {
         return ApiResult.success(parser(response.data));
       }
       return ApiResult.success(response.data as T);
     } catch (e) {
-      if (showLoading) MyLoading.dismis();
       if (e is DioException) {
         return ApiResult.failure(ErrorHandler.handleDioException(e));
       }
@@ -249,8 +243,6 @@ class DioConsumer implements ApiConsumer {
     bool showLoading = false,
   }) async {
     try {
-      if (showLoading) MyLoading.show();
-
       _updateHeaders(method: 'GET');
       await _dio.download(
         path,
@@ -259,14 +251,10 @@ class DioConsumer implements ApiConsumer {
         options: Options(headers: headers),
         onReceiveProgress: onProgress,
       );
-
-      if (showLoading) MyLoading.dismis();
       return ApiResult.success(savePath);
     } on DioException catch (e) {
-      if (showLoading) MyLoading.dismis();
       return ApiResult.failure(ErrorHandler.handleDioException(e));
     } catch (e, stackTrace) {
-      if (showLoading) MyLoading.dismis();
       return ApiResult.failure(
         UnknownFailure(
           message: e.toString(),

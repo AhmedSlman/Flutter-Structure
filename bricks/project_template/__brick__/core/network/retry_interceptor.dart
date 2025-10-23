@@ -1,93 +1,60 @@
-import 'dart:async';
-import 'dart:math';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
-/// Retry interceptor for handling failed requests
+/// Interceptor for automatic retry on failed requests
 class RetryInterceptor extends Interceptor {
-  final Dio dio;
-  final int retries;
-  final List<Duration> retryDelays;
-  final void Function(String message)? logPrint;
+  final int maxRetries;
+  final Duration retryDelay;
+  final List<int> retryStatusCodes;
 
   RetryInterceptor({
-    required this.dio,
-    this.retries = 3,
-    this.retryDelays = const [
-      Duration(seconds: 1),
-      Duration(seconds: 2),
-      Duration(seconds: 3),
-    ],
-    this.logPrint,
+    this.maxRetries = 3,
+    this.retryDelay = const Duration(seconds: 1),
+    this.retryStatusCodes = const [500, 502, 503, 504],
   });
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    final extra =
-        RetryOptions.fromExtra(err.requestOptions) ??
-        RetryOptions(retries: retries, retryDelays: retryDelays);
+    final shouldRetry = _shouldRetry(err);
+    final requestOptions = err.requestOptions;
 
-    final shouldRetry = extra.retries > 0 && _shouldRetry(err);
-    if (!shouldRetry) {
-      return handler.next(err);
-    }
+    if (shouldRetry && _getRetryCount(requestOptions) < maxRetries) {
+      _incrementRetryCount(requestOptions);
 
-    final delay = _getDelay(extra);
-    logPrint?.call('Retrying request after ${delay.inMilliseconds}ms');
-
-    await Future.delayed(delay);
-
-    try {
-      final response = await dio.fetch(err.requestOptions);
-      return handler.resolve(response);
-    } catch (e) {
-      if (e is DioException) {
-        final newExtra = extra.copyWith(retries: extra.retries - 1);
-        err.requestOptions.extra = newExtra.toExtra();
-        return onError(e, handler);
+      if (kDebugMode) {
+        debugPrint(
+          'Retrying request: ${requestOptions.path} '
+          '(${_getRetryCount(requestOptions)}/$maxRetries)',
+        );
       }
-      return handler.next(err);
+
+      await Future.delayed(retryDelay);
+
+      try {
+        final response = await Dio().fetch(requestOptions);
+        handler.resolve(response);
+        return;
+      } catch (e) {
+        // If retry fails, continue with error
+      }
     }
+
+    super.onError(err, handler);
   }
 
   bool _shouldRetry(DioException err) {
     return err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout ||
-        err.type == DioExceptionType.sendTimeout ||
         err.type == DioExceptionType.connectionError ||
-        (err.type == DioExceptionType.badResponse &&
-            err.response?.statusCode != null &&
-            err.response!.statusCode! >= 500);
+        (err.response != null &&
+            retryStatusCodes.contains(err.response!.statusCode));
   }
 
-  Duration _getDelay(RetryOptions options) {
-    if (options.retryDelays.isEmpty) {
-      return Duration(seconds: 1);
-    }
-
-    final retryCount = options.retries;
-    final delayIndex = min(retryCount - 1, options.retryDelays.length - 1);
-    return options.retryDelays[delayIndex];
-  }
-}
-
-class RetryOptions {
-  final int retries;
-  final List<Duration> retryDelays;
-
-  const RetryOptions({required this.retries, required this.retryDelays});
-
-  RetryOptions copyWith({int? retries, List<Duration>? retryDelays}) {
-    return RetryOptions(
-      retries: retries ?? this.retries,
-      retryDelays: retryDelays ?? this.retryDelays,
-    );
+  int _getRetryCount(RequestOptions options) {
+    return options.extra['retryCount'] as int? ?? 0;
   }
 
-  Map<String, dynamic> toExtra() {
-    return {'retry_options': this};
-  }
-
-  static RetryOptions? fromExtra(RequestOptions request) {
-    return request.extra['retry_options'] as RetryOptions?;
+  void _incrementRetryCount(RequestOptions options) {
+    options.extra['retryCount'] = _getRetryCount(options) + 1;
   }
 }

@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'failures.dart';
 import 'exceptions.dart';
-import '../localization/localization_helper.dart';
 
 /// Converts exceptions to failures
 class ErrorHandler {
@@ -34,13 +34,13 @@ class ErrorHandler {
 
       case DioExceptionType.cancel:
         return UnknownFailure(
-          message: EasyLocalization.isArabic ? 'تم إلغاء الطلب' : 'Request cancelled',
+          message: 'request_cancelled'.tr(),
           code: 'REQUEST_CANCELLED',
         );
 
       case DioExceptionType.badCertificate:
         return NetworkFailure(
-          message: EasyLocalization.isArabic ? 'خطأ في شهادة الأمان' : 'Bad certificate',
+          message: 'bad_certificate'.tr(),
           code: 'BAD_CERTIFICATE',
         );
 
@@ -123,7 +123,7 @@ class ErrorHandler {
 
       case 429:
         return ServerFailure(
-          message: EasyLocalization.isArabic ? 'تم تجاوز عدد الطلبات المسموح بها' : 'Too many requests',
+          message: 'too_many_requests'.tr(),
           code: 'TOO_MANY_REQUESTS',
         );
 
@@ -140,7 +140,7 @@ class ErrorHandler {
 
       default:
         return UnknownFailure(
-          message: message ?? (EasyLocalization.isArabic ? 'حدث خطأ غير متوقع' : 'Unexpected error occurred'),
+          message: message ?? 'unexpected_error_occurred'.tr(),
           code: 'HTTP_$statusCode',
           originalError: error,
           stackTrace: error.stackTrace,
@@ -170,7 +170,7 @@ class ErrorHandler {
 
     if (exception is FormatException) {
       return UnknownFailure(
-        message: EasyLocalization.isArabic ? 'خطأ في تنسيق البيانات' : 'Data format error',
+        message: 'data_format_error'.tr(),
         code: 'FORMAT_ERROR',
       );
     }
